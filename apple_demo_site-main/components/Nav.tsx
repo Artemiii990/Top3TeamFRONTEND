@@ -37,6 +37,12 @@ export default function Nav() {
   }, []);
 
   return (
+    <header className={s.headerContainer}>
+      {/* світло-сірий напис над навігацією */}
+      <div className={s.topBanner}>
+        Продукти, послуги та функції операційних систем можуть бути недоступними в цій країні.
+      </div>
+
     <nav className={s.nav} data-open={open} aria-label="Apple">
       <a href="#" className={s.logo} aria-label="Apple">
         <svg
@@ -97,5 +103,6 @@ export default function Nav() {
         <span />
       </button>
     </nav>
+    </header>
   );
 }
