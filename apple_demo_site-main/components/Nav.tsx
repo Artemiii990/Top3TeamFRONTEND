@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import s from './Nav.module.css';
+import MegaMenu from './MegaMenu';
 
 const LINKS: { label: string; active?: boolean }[] = [
   { label: 'Store' },
@@ -18,6 +19,7 @@ const LINKS: { label: string; active?: boolean }[] = [
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  const [activeMenu, setActiveMenu] = useState<string | null>(null);
 
   // Lock body scroll while the mobile menu is open.
   useEffect(() => {
@@ -38,12 +40,14 @@ export default function Nav() {
 
   return (
     <header className={s.headerContainer}>
-      {/* світло-сірий напис над навігацією */}
+      {/* TOP BANNER - світло-сірий напис над навігацією */}
       <div className={s.topBanner}>
         Продукти, послуги та функції операційних систем можуть бути недоступними в цій країні.
       </div>
 
+    {/* NAV */}
     <nav className={s.nav} data-open={open} aria-label="Apple">
+      {/* LOGO */}
       <a href="#" className={s.logo} aria-label="Apple">
         <svg
           viewBox="0 0 14 44"
@@ -58,12 +62,19 @@ export default function Nav() {
         </svg>
       </a>
 
+      {/* LINKS */}
       <div id="mobile-nav-links" className={s.links}>
         {LINKS.map(({ label, active }) => (
           <a
             key={label}
             href="#"
             className={active ? s.active : undefined}
+            // onMouseEnter={() => setActiveMenu(label)}
+            onMouseEnter={() => {
+              if (window.innerWidth > 900) {
+                setActiveMenu(label);
+              }
+            }}
             onClick={() => setOpen(false)}
           >
             {label}
@@ -71,6 +82,7 @@ export default function Nav() {
         ))}
       </div>
 
+      {/* ICONS */}
       <a href="#" className={`${s.icon} ${s.search}`} aria-label="Search">
         <svg
           viewBox="0 0 24 24"
@@ -91,6 +103,7 @@ export default function Nav() {
         </svg>
       </a>
 
+      {/* HAMBURGER */}
       <button
         className={s.hamburger}
         type="button"
@@ -103,6 +116,11 @@ export default function Nav() {
         <span />
       </button>
     </nav>
+
+    <MegaMenu
+      activeMenu={activeMenu}
+      onClose={() => setActiveMenu(null)}
+    />
     </header>
   );
 }
