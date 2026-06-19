@@ -5,14 +5,20 @@ import { MENU_DATA } from './menuData';
 
 type MenuKey = keyof typeof MENU_DATA;
 
+// type Props = {
+//   activeMenu: string | null;
+//   onClose: () => void;
+// };
 type Props = {
   activeMenu: string | null;
   onClose: () => void;
+  onKeepOpen: () => void;
 };
 
 export default function MegaMenu({
   activeMenu,
   onClose,
+  onKeepOpen,
 }: Props) {
   if (!activeMenu) return null;
 
@@ -29,7 +35,10 @@ export default function MegaMenu({
       />
 
       <div
+        // className={s.menu}
+        // onMouseLeave={onClose}
         className={s.menu}
+        onMouseEnter={onKeepOpen}
         onMouseLeave={onClose}
       >
         <div className={s.inner}>

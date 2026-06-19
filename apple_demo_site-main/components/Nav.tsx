@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import s from './Nav.module.css';
 import MegaMenu from './MegaMenu';
 
@@ -20,6 +20,7 @@ const LINKS: { label: string; active?: boolean }[] = [
 export default function Nav() {
   const [open, setOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  const closeTimeout = useRef<NodeJS.Timeout | null>(null);
 
   // Lock body scroll while the mobile menu is open.
   useEffect(() => {
@@ -37,6 +38,20 @@ export default function Nav() {
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
   }, []);
+
+  const openMenu = (label: string) => {
+    if (closeTimeout.current) {
+      clearTimeout(closeTimeout.current);
+    }
+
+    setActiveMenu(label);
+  };
+
+  const closeMenu = () => {
+    closeTimeout.current = setTimeout(() => {
+      setActiveMenu(null);
+    }, 200);
+  };
 
   return (
     <header className={s.headerContainer}>
@@ -70,9 +85,14 @@ export default function Nav() {
             href="#"
             className={active ? s.active : undefined}
             // onMouseEnter={() => setActiveMenu(label)}
+            // onMouseEnter={() => {
+            //   if (window.innerWidth > 900) {
+            //     setActiveMenu(label);
+            //   }
+            // }}
             onMouseEnter={() => {
               if (window.innerWidth > 900) {
-                setActiveMenu(label);
+                openMenu(label);
               }
             }}
             onClick={() => setOpen(false)}
@@ -117,9 +137,18 @@ export default function Nav() {
       </button>
     </nav>
 
-    <MegaMenu
+    {/* <MegaMenu
       activeMenu={activeMenu}
       onClose={() => setActiveMenu(null)}
+    /> */}
+    <MegaMenu
+      activeMenu={activeMenu}
+      onClose={closeMenu}
+      onKeepOpen={() => {
+        if (closeTimeout.current) {
+          clearTimeout(closeTimeout.current);
+        }
+      }}
     />
     </header>
   );
