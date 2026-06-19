@@ -14,6 +14,7 @@ function HeroBanner() {
 
       <div className={s.media}>
         <img src="/images/iphone.webp" alt='iPhone' />
+        {/* <img src="/images/iphone.png" alt='iPhone' /> */}
       </div>
     </section>
   );
@@ -32,7 +33,7 @@ function TabletBanner() {
       </div>
 
       <div className={s.media}>
-        <img src="/images/ipad.jpg" alt="iPad" />
+        <img src="/images/ipad.png" alt="iPad" />
       </div>
     </section>
   );
@@ -51,7 +52,7 @@ function MacBanner() {
       </div>
 
       <div className={s.media}>
-        <img src="/images/macbook.jpg" alt="MacBook" />
+        <img src="/images/macbook.png" alt="MacBook" />
       </div>
     </section>
   );
@@ -61,7 +62,7 @@ function GridSection() {
   return (
     <section className={s.grid}>
       <div className={s.card}>
-        <img src="/images/airpods.jpg" />
+        <img src="/images/airpods.png" />
         <h3>AirPods Max 2</h3>
         <p className={s.subtitle}>Звучання. У ремастерингу.</p>
         <div className={s.actions}>
@@ -75,7 +76,7 @@ function GridSection() {
         <div className={s.actions}>
           <button className="btn btn-primary">Детальніше</button>
         </div>
-        <img src="/images/macbook.jpg" />
+        <img src="/images/macbook-pro.png" />
       </div>
 
       <div className={s.card}>        
@@ -84,7 +85,7 @@ function GridSection() {
         <div className={s.actions}>
           <button className="btn btn-primary">Детальніше</button>
         </div>
-        <img src="/images/airpods.jpg" />
+        <img src="/images/airpods-pro.png" />
       </div>
 
       <div className={s.card}>
@@ -93,7 +94,7 @@ function GridSection() {
         <div className={s.actions}>
           <button className="btn btn-primary">Детальніше</button>
         </div>
-        <img src="/images/watch.jpg" />
+        <img src="/images/watch.png" />
       </div>
 
       <div className={s.card}>
@@ -102,7 +103,7 @@ function GridSection() {
         <div className={s.actions}>
           <button className="btn btn-primary">Детальніше</button>
         </div>
-        <img src="/images/ipad.jpg" />
+        <img src="/images/ipad-pro.png" />
       </div>
 
       <div className={s.card}>
@@ -111,7 +112,7 @@ function GridSection() {
         <div className={s.actions}>
           <button className="btn btn-primary">Детальніше</button>
         </div>
-        <img src="/images/watch.jpg" />
+        <img src="/images/watch-series.png" />
       </div>
     </section>
   );
@@ -127,22 +128,3 @@ export default function Hero() {
     </>
   );
 }
-
-// export default function Hero() {
-//   return (
-    // <section className={s.hero}>
-    //   <h1 className={s.headline}>
-    //     <span className={s.l1}>iPhone</span>
-    //     <div className={s.price}>Зустрічайте найновішу лінійку iPhone</div>
-    //   </h1>
-    //   <div className={s.meta}>
-        {/* <div className={s.price}>
-          FROM <strong>$1,099</strong> · AVAILABLE 19.09
-        </div> */}
-    //     <div className={s.ctas}>
-    //       <button className="btn btn-primary">Детальніше</button>
-    //     </div>
-    //   </div>
-    // </section>
-//   );
-// }
