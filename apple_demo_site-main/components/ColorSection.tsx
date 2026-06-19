@@ -1,9 +1,9 @@
 import s from './ColorSection.module.css';
 
 const COLORS: { id: 'silver' | 'orange' | 'blue'; name: string }[] = [
-  { id: 'blue', name: 'Deep Blue' },
-  { id: 'orange', name: 'Cosmic Orange' },
   { id: 'silver', name: 'Silver' },
+  { id: 'orange', name: 'Cosmic Orange' },
+  { id: 'blue', name: 'Deep Blue' },
 ];
 
 export default function ColorSection() {
