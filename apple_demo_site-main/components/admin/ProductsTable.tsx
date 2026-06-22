@@ -10,21 +10,25 @@ type Product = {
 
 type Props = {
   products: Product[];
+  onEdit: (product: Product) => void;
+  onDelete: (id: number) => void;
 };
 
 export default function ProductsTable({
   products,
+  onEdit,
+  onDelete,
 }: Props) {
   return (
     <div className={s.wrapper}>
       <table className={s.table}>
         <thead>
           <tr>
-            <th>Назва</th>
-            <th>Категорія</th>
-            <th>Ціна</th>
-            <th>Статус</th>
-            <th>Дії</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Status</th>
+            <th>Actions</th>
           </tr>
         </thead>
 
@@ -32,26 +36,23 @@ export default function ProductsTable({
           {products.map(product => (
             <tr key={product.id}>
               <td>{product.name}</td>
-
               <td>{product.category}</td>
-
               <td>${product.price}</td>
+              <td>{product.status}</td>
 
-              <td>
-                <span
-                  className={`${s.status} ${
-                    product.status === 'Active'
-                      ? s.active
-                      : s.draft
-                  }`}
+              <td style={{ display: 'flex', gap: 8 }}>
+                <button
+                  className={s.editBtn}
+                  onClick={() => onEdit(product)}
                 >
-                  {product.status}
-                </span>
-              </td>
-
-              <td>
-                <button className={s.editBtn}>
                   Edit
+                </button>
+
+                <button
+                  className={s.deleteBtn}
+                  onClick={() => onDelete(product.id)}
+                >
+                  Delete
                 </button>
               </td>
             </tr>
