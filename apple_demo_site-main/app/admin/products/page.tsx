@@ -1,24 +1,23 @@
 'use client';
 
-import { useState } from 'react';
-import { products as initialProducts } from '@/mock/products';
 import ProductsTable from '@/components/admin/ProductsTable';
 import Button from '@/components/ui/Button';
 import Modal from '@/components/ui/Modal';
-
-type Product = {
-  id: number;
-  name: string;
-  category: string;
-  price: number;
-  status: string;
-};
+import { useState } from 'react';
+import { useProducts } from '@/src/hooks/useProducts';
 
 export default function ProductsPage() {
-  const [products, setProducts] = useState<Product[]>(initialProducts);
+  const {
+    products,
+    search,
+    setSearch,
+    addProduct,
+    updateProduct,
+    deleteProduct,
+  } = useProducts();
 
   const [open, setOpen] = useState(false);
-  const [editing, setEditing] = useState<Product | null>(null);
+  const [editing, setEditing] = useState<any>(null);
 
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
@@ -30,94 +29,72 @@ export default function ProductsPage() {
     setOpen(true);
   };
 
-  const openEdit = (product: Product) => {
+  const openEdit = (product: any) => {
     setEditing(product);
     setName(product.name);
     setPrice(String(product.price));
     setOpen(true);
   };
 
-  const saveProduct = () => {
-    if (!name || !price) return;
-
+  const save = () => {
     if (editing) {
-      setProducts(prev =>
-        prev.map(p =>
-          p.id === editing.id
-            ? { ...p, name, price: Number(price) }
-            : p
-        )
-      );
+      updateProduct({
+        ...editing,
+        name,
+        price: Number(price),
+      });
     } else {
-      setProducts(prev => [
-        ...prev,
-        {
-          id: Date.now(),
-          name,
-          category: 'Phones',
-          price: Number(price),
-          status: 'Active',
-        },
-      ]);
+      addProduct({
+        name,
+        price: Number(price),
+        category: 'Phones',
+        status: 'Active',
+      });
     }
 
     setOpen(false);
-    setEditing(null);
-    setName('');
-    setPrice('');
-  };
-
-  const deleteProduct = (id: number) => {
-    setProducts(prev => prev.filter(p => p.id !== id));
   };
 
   return (
     <div>
-      {/* HEADER */}
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          marginBottom: 24,
-        }}
-      >
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <h1>Products</h1>
+
+        <input
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Search..."
+        />
 
         <Button onClick={openCreate}>
           + Add Product
         </Button>
       </div>
 
-      {/* TABLE */}
       <ProductsTable
         products={products}
         onEdit={openEdit}
         onDelete={deleteProduct}
       />
 
-      {/* MODAL */}
       <Modal open={open} onClose={() => setOpen(false)}>
-        <h2 style={{ marginBottom: 16 }}>
-          {editing ? 'Edit Product' : 'New Product'}
-        </h2>
+        <h2>{editing ? 'Edit' : 'Create'}</h2>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-          <input
-            placeholder="Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
+        <input
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Name"
+        />
 
-          <input
-            placeholder="Price"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-          />
+        <input
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
+          placeholder="Price"
+        />
 
-          <Button onClick={saveProduct}>
-            {editing ? 'Update' : 'Create'}
-          </Button>
-        </div>
+        <Button onClick={save}>
+          Save
+        </Button>
       </Modal>
     </div>
   );
