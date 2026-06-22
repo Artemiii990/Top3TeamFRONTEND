@@ -1,8 +1,6 @@
 .backdrop {
   position: fixed;
-  /* inset: 0;
-  background: rgba(0,0,0,0.35); */
-  top: 92px;   /* важливо, щоб також не блюрився й верхній напис */
+  top: 92px; /* keeps the nav bar itself from being blurred */
   left: 0;
   right: 0;
   bottom: 0;
@@ -21,30 +19,23 @@
   left: 0;
   right: 0;
 
-  background: rgba(255,255,255,0.98);
-
-  /* backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px); */
+  background: rgba(255, 255, 255, 0.98);
 
   border-bottom: 1px solid var(--rule);
 
-  animation: revealMenu .25s ease;
+  animation: revealMenu 0.25s ease;
 
   z-index: 60;
 }
 
 .inner {
   max-width: 1200px;
-
   margin: 0 auto;
 
   display: grid;
-
-  grid-template-columns:
-    2fr
-    1fr
-    1fr;
-
+  /* Wide first column for the bold model links,
+     narrow second column for the secondary links */
+  grid-template-columns: 2.4fr 1fr;
   gap: 64px;
 
   padding: 48px 32px;
@@ -66,15 +57,40 @@
   font-size: 28px;
   font-weight: 600;
   letter-spacing: -0.03em;
-}
-
-.column a {
   color: var(--text-primary);
-  transition: opacity .2s ease;
+
+  opacity: 0;
+  transform: translateY(12px);
+  animation: itemReveal 0.35s ease forwards;
 }
 
-.column a:hover {
-  opacity: .7;
+.featured:hover {
+  opacity: 0.7;
+}
+
+/* Smaller, muted link under the bold list — e.g. "Порівняння моделей Mac" */
+.compare {
+  margin-top: 6px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-secondary);
+  transition: opacity 0.2s ease;
+}
+
+.compare:hover {
+  opacity: 0.7;
+}
+
+/* Regular-weight links in the second, narrower column */
+.secondary {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--text-primary);
+  transition: opacity 0.2s ease;
+}
+
+.secondary:hover {
+  opacity: 0.7;
 }
 
 @keyframes revealMenu {
@@ -82,34 +98,10 @@
     opacity: 0;
     transform: translateY(-12px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-
-.featured {
-  opacity: 0;
-  transform: translateY(12px);
-  animation: itemReveal .35s ease forwards;
-}
-
-.featured:nth-child(2) {
-  animation-delay: .05s;
-}
-
-.featured:nth-child(3) {
-  animation-delay: .1s;
-}
-
-.featured:nth-child(4) {
-  animation-delay: .15s;
-}
-
-.featured:nth-child(5) {
-  animation-delay: .2s;
 }
 
 @keyframes itemReveal {
@@ -118,7 +110,6 @@
     transform: translateY(0);
   }
 }
-
 
 .headerContainer {
   z-index: 100;
