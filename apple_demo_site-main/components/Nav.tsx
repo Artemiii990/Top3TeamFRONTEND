@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from 'react';
 import s from './Nav.module.css';
 import MegaMenu from './MegaMenu';
+import SearchPanel from './SearchPanel';
 
 const LINKS: { label: string; active?: boolean }[] = [
   { label: 'Store' },
@@ -20,7 +21,9 @@ const LINKS: { label: string; active?: boolean }[] = [
 export default function Nav() {
   const [open, setOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  const [searchOpen, setSearchOpen] = useState(false);
   const closeTimeout = useRef<NodeJS.Timeout | null>(null);
+  const searchCloseTimeout = useRef<NodeJS.Timeout | null>(null);
 
   // Lock body scroll while the mobile menu is open.
   useEffect(() => {
@@ -43,7 +46,9 @@ export default function Nav() {
     if (closeTimeout.current) {
       clearTimeout(closeTimeout.current);
     }
-
+    // A product menu and the search panel are mutually exclusive —
+    // hovering a nav link while search is open should swap straight over.
+    setSearchOpen(false);
     setActiveMenu(label);
   };
 
@@ -51,6 +56,26 @@ export default function Nav() {
     closeTimeout.current = setTimeout(() => {
       setActiveMenu(null);
     }, 200);
+  };
+
+  const toggleSearch = () => {
+    if (searchCloseTimeout.current) {
+      clearTimeout(searchCloseTimeout.current);
+    }
+    setActiveMenu(null);
+    setSearchOpen(o => !o);
+  };
+
+  const closeSearch = () => {
+    searchCloseTimeout.current = setTimeout(() => {
+      setSearchOpen(false);
+    }, 200);
+  };
+
+  const keepSearchOpen = () => {
+    if (searchCloseTimeout.current) {
+      clearTimeout(searchCloseTimeout.current);
+    }
   };
 
   return (
@@ -84,12 +109,6 @@ export default function Nav() {
             key={label}
             href="#"
             className={active ? s.active : undefined}
-            // onMouseEnter={() => setActiveMenu(label)}
-            // onMouseEnter={() => {
-            //   if (window.innerWidth > 900) {
-            //     setActiveMenu(label);
-            //   }
-            // }}
             onMouseEnter={() => {
               if (window.innerWidth > 900) {
                 openMenu(label);
@@ -103,7 +122,16 @@ export default function Nav() {
       </div>
 
       {/* ICONS */}
-      <a href="#" className={`${s.icon} ${s.search}`} aria-label="Search">
+      <a
+        href="#"
+        className={`${s.icon} ${s.search}`}
+        aria-label="Search"
+        aria-expanded={searchOpen}
+        onClick={e => {
+          e.preventDefault();
+          toggleSearch();
+        }}
+      >
         <svg
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
@@ -137,10 +165,6 @@ export default function Nav() {
       </button>
     </nav>
 
-    {/* <MegaMenu
-      activeMenu={activeMenu}
-      onClose={() => setActiveMenu(null)}
-    /> */}
     <MegaMenu
       activeMenu={activeMenu}
       onClose={closeMenu}
@@ -149,6 +173,12 @@ export default function Nav() {
           clearTimeout(closeTimeout.current);
         }
       }}
+    />
+
+    <SearchPanel
+      open={searchOpen}
+      onClose={closeSearch}
+      onKeepOpen={keepSearchOpen}
     />
     </header>
   );
