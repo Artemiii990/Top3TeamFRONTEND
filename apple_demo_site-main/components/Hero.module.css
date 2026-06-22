@@ -1,11 +1,14 @@
+/* ---------------- LAYOUT BASE ---------------- */
+
 .section {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   text-align: center;
   position: relative;
-  padding: 80px 24px;
+  padding: 96px 24px 0;
   overflow: hidden;
 }
 
@@ -26,7 +29,7 @@
 /* ---------------- iPad ---------------- */
 
 .ipad {
-  background: #f5f5f7;
+  background: #eaf3fb;
   color: #1d1d1f;
 }
 
@@ -36,44 +39,78 @@
   position: relative;
   z-index: 2;
   max-width: 900px;
-  animation: fadeUp 1s ease both;
+  flex-shrink: 0;
+  animation: fadeUp 0.8s ease both;
 }
 
 .title {
-  font-size: clamp(40px, 6vw, 84px);
+  font-size: clamp(40px, 6vw, 80px);
   font-weight: 600;
-  letter-spacing: -0.03em;
+  letter-spacing: clamp(-0.02em, -0.01em, 0);
+  line-height: 1.05;
 }
 
 .subtitle {
   margin-top: 12px;
-  font-size: clamp(16px, 2vw, 22px);
-  opacity: 0.7;
+  font-size: clamp(17px, 1.6vw, 24px);
+  opacity: 0.8;
+  font-weight: 400;
 }
 
-/* ---------------- MEDIA ---------------- */
+/* ---------------- MEDIA (banners) ---------------- */
+/* Image flows naturally below the text, never overlaps it */
 
 .media {
-  position: absolute;
-  bottom: 0;
   width: 100%;
+  flex: 1;
   display: flex;
+  align-items: flex-end;
   justify-content: center;
+  margin-top: 32px;
 }
 
 .media img {
-  width: min(900px, 90vw);
+  width: min(900px, 88vw);
+  max-height: 60vh;
   height: auto;
   object-fit: contain;
 }
 
-/* ---------------- ACTIONS ---------------- */
+/* ---------------- ACTIONS / BUTTONS ---------------- */
 
 .actions {
-  margin-top: 24px;
+  margin-top: 20px;
   display: flex;
   gap: 16px;
   justify-content: center;
+}
+
+/* Fallback button styling so the pill-blue CTA renders even if
+   global .btn / .btn-primary classes aren't defined yet */
+.cta {
+  display: inline-block;
+  padding: 12px 22px;
+  border-radius: 980px;
+  background: #0071e3;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 400;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.cta:hover {
+  background: #0077ed;
+}
+
+.cta:active {
+  transform: scale(0.97);
+}
+
+.cta:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
 }
 
 /* ---------------- GRID ---------------- */
@@ -81,23 +118,76 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  padding: 12px;
+  gap: 2px;
   background: #fff;
 }
 
-.card {
-  background: #f5f5f7;
-  border-radius: 18px;
-  padding: 32px;
-  text-align: center;
-  overflow: hidden;
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
 }
 
-.card img {
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 580px;
+  padding: 56px 40px 0;
+  text-align: center;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.cardLight {
+  background: #f5f5f7;
+  color: #1d1d1f;
+}
+
+.cardDark {
+  background: #000;
+  color: #fff;
+}
+
+.cardText {
+  flex-shrink: 0;
+  animation: fadeUp 0.8s ease both;
+}
+
+.cardTitle {
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.cardSubtitle {
+  margin-top: 8px;
+  font-size: clamp(15px, 1.4vw, 19px);
+  opacity: 0.8;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cardMedia {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.cardMedia img {
   width: 100%;
-  margin-top: 16px;
+  max-width: 420px;
+  max-height: 340px;
+  height: auto;
   object-fit: contain;
+  transition: transform 0.4s ease;
+}
+
+.card:hover .cardMedia img {
+  transform: translateY(-6px) scale(1.02);
 }
 
 /* ---------------- ANIMATION ---------------- */
@@ -105,7 +195,7 @@
 @keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(24px);
   }
   to {
     opacity: 1;
@@ -113,18 +203,42 @@
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .content,
+  .cardText {
+    animation: none;
+  }
+
+  .cta,
+  .cardMedia img {
+    transition: none;
+  }
+}
+
 /* ---------------- RESPONSIVE ---------------- */
 
 @media (max-width: 900px) {
-  .hero {
-    padding: 96px 24px 64px;
-  }
-
-  .grid {
-    grid-template-columns: 1fr;
-  }
-
   .section {
-    padding: 60px 16px;
+    min-height: auto;
+    padding: 72px 20px 0;
+  }
+
+  .media img {
+    max-height: 46vh;
+  }
+
+  .card {
+    min-height: 460px;
+    padding: 48px 24px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 36px;
+  }
+
+  .subtitle {
+    font-size: 16px;
   }
 }
