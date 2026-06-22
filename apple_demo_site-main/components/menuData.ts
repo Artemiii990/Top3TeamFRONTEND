@@ -1,33 +1,48 @@
-// Shape based on the real 2-column layout:
-// Column 1: section title + bold "featured" links + a smaller "compare" link
-// Column 2: secondary title + a couple of smaller regular links
-export const MENU_DATA = {
+// Each menu has a flexible number of columns (1-3, confirmed varies by section).
+// Column 1 is always: title + bold "featured" links + an optional smaller "bottom" link.
+// Extra columns are plain { title, links[] } groups.
+type ExtraColumn = {
+  title: string;
+  links: string[];
+};
+
+type MenuEntry = {
+  title: string;
+  featured: string[];
+  bottomLink?: string; // e.g. "Порівняння моделей Mac" / "Дізнатися про підтримку" / "Переглянути всі варіанти"
+  columns?: ExtraColumn[]; // 0, 1, or 2 extra columns
+};
+
+export const MENU_DATA: Record<string, MenuEntry> = {
   Store: {
     title: 'Магазин',
     featured: [
       'Переглянути магазин',
       'Mac',
-      'iPhone',
       'iPad',
+      'iPhone',
       'Apple Watch',
       'AirPods',
-      'TV та дім',
+      'TV',
     ],
-    compareLink: null,
-    moreTitle: 'Покупки в Apple',
-    moreLinks: [
-      'Спеціальні пропозиції',
-      'Apple Trade In',
-      'Фінансування',
-      'Статус замовлення',
-      'Допомога з покупкою',
+    columns: [
+      {
+        title: 'Покупки в Apple',
+        links: ['Спеціальні пропозиції', 'Apple Trade In', 'Фінансування'],
+      },
+      {
+        title: 'Допомога',
+        links: ['Статус замовлення', 'Допомога з покупкою'],
+      },
     ],
   },
 
+  //MACBOOK
   Mac: {
     title: 'Дізнатися про Mac',
     featured: [
       'Переглянути всі моделі Mac',
+      'MacBook Neo',
       'MacBook Air',
       'MacBook Pro',
       'iMac',
@@ -35,88 +50,153 @@ export const MENU_DATA = {
       'Mac Studio',
       'Дисплеї',
     ],
-    compareLink: 'Порівняння моделей Mac',
-    moreTitle: 'Більше від Mac',
-    moreLinks: ['Підтримка Mac'],
+    bottomLink: 'Порівняння моделей Mac',
+    columns: [
+      {
+        title: 'Більше від Mac',
+        links: ['Підтримка Mac'],
+      },
+    ],
   },
 
+  //iPAD
   iPad: {
-    title: 'Переглянути iPad',
+    title: 'Дізнатися про iPad',
     featured: [
       'Переглянути всі моделі iPad',
       'iPad Pro',
       'iPad Air',
       'iPad',
       'iPad mini',
+      'Apple Pencil',
+      'Клавіатури', 
     ],
-    compareLink: 'Порівняння моделей iPad',
-    moreTitle: 'Більше від iPad',
-    moreLinks: ['Apple Pencil', 'Клавіатури', 'Підтримка iPad'],
+    bottomLink: 'Порівняння моделей iPad',
+    columns: [
+      {
+        title: 'Більше від iPad',
+        links: ['Підтримка iPad'],
+      },
+    ],
   },
 
+  //iPHONE
   iPhone: {
-    title: 'Переглянути всі моделі iPhone',
+    title: 'Дізнатися про iPhone',
     featured: [
+      'Переглянути всі моделі iPhone',
       'iPhone 17 Pro',
       'iPhone Air',
       'iPhone 17',
       'iPhone 17e',
       'iPhone 16',
     ],
-    compareLink: 'Порівняння моделей iPhone',
-    moreTitle: 'Більше від iPhone',
-    moreLinks: ['Перехід на iPhone', 'Аксесуари до iPhone', 'Підтримка iPhone'],
-  },
-
-  Watch: {
-    title: 'Переглянути Apple Watch',
-    featured: [
-      'Apple Watch Ultra 3',
-      'Apple Watch Series 11',
-      'Apple Watch SE',
+    bottomLink: 'Порівняння моделей iPhone',
+    columns: [
+      {
+        title: 'Більше від iPhone',
+        links: ['Підтримка iPhone'],
+      },
     ],
-    compareLink: 'Порівняння моделей Watch',
-    moreTitle: 'Більше від Watch',
-    moreLinks: ['Ремінці Apple Watch', 'Підтримка Watch'],
   },
 
+  //WATCH
+  Watch: {
+    title: 'Дізнатися про Watch',
+    featured: [
+      'Переглянути всі моделі Apple Watch',
+      'Apple Watch Series 11',
+      'Apple Watch SE 3',
+      'Apple Watch Ultra 3',
+    ],
+    bottomLink: 'Порівняння моделей Watch',
+    columns: [
+      {
+        title: 'Більше від Watch',
+        links: ['Підтримка Apple Watch'],
+      },
+    ],
+  },
+
+  //AIRPODS
   AirPods: {
-    title: 'Переглянути AirPods',
-    featured: ['AirPods 4', 'AirPods Pro 3', 'AirPods Max'],
-    compareLink: 'Порівняння моделей AirPods',
-    moreTitle: 'Більше від AirPods',
-    moreLinks: ['Підтримка AirPods'],
+    title: 'Дізнатися про AirPods',
+    featured: [
+      'Переглянути всі моделі AirPods',
+      'AirPods 4', 
+      'AirPods Pro 3', 
+      'AirPods Max 2',
+    ],
+    bottomLink: 'Порівняння моделей AirPods',
+    columns: [
+      {
+        title: 'Більше від AirPods',
+        links: ['Підтримка AirPods'],
+      },
+    ],
   },
 
+  //TV
   TV: {
-    title: 'Телебачення і дім',
-    featured: ['Apple TV 4K', 'HomePod', 'HomePod mini'],
-    compareLink: null,
-    moreTitle: 'Більше від Apple',
-    moreLinks: ['Apple TV+', 'Apple Music', 'Підтримка TV та дому'],
+    title: 'Дізнатися про TV',
+    featured: [
+      'Дізнатися про TV',
+      'Apple TV 4K',
+    ],
+    columns: [
+      {
+        title: 'Більше від TV',
+        links: ['Підтримка Apple TV'],
+      },
+    ],
   },
 
+  //SERVICES
   Сервіси: {
-    title: 'Сервіси Apple',
-    featured: ['Apple Music', 'Apple TV+', 'iCloud+', 'Apple Arcade'],
-    compareLink: null,
-    moreTitle: 'Більше сервісів',
-    moreLinks: ['Apple One', 'Apple Fitness+', 'Керування підписками'],
+    title: 'Дізнатися про сервіси',
+    featured: [
+      'Переглянути сервіси',
+      'Apple One',
+      'Apple TV',
+      'Apple Music', 
+      'Apple Arcade',
+      'Apple Podcasts',
+      'App Store',
+    ],
+    columns: [
+      {
+        title: 'Підтримка',
+        links: ['Підтримка Apple TV', 'Підтримка Apple Music'],
+      },
+    ],
   },
 
+  // SUPPORT
   Підтримка: {
-    title: 'Підтримка Apple',
-    featured: ['iPhone', 'Mac', 'iPad', 'Watch', 'AirPods'],
-    compareLink: null,
-    moreTitle: 'Ресурси',
-    moreLinks: ['Спільнота Apple', 'Ремонт', 'Зв’язатися з підтримкою'],
+    title: 'Дізнатися про підтримку',
+    featured: ['iPhone', 'Mac', 'iPad', 'Watch', 'AirPods', 'Music', 'TV'],
+    bottomLink: 'Дізнатися про підтримку',
+    columns: [
+      {
+        title: 'Допомога',
+        links: ['Спільнота', 'Перевірити програму підтримки'],
+      },
+      {
+        title: 'Корисні теми',
+        links: [
+          'Обліковий запис Apple і пароль',
+          'Виставлення рахунків і підписки',
+          'Доступність',
+        ],
+      },
+    ],
   },
 
+  // BUY
   'Де купити': {
-    title: 'Де купити',
-    featured: ['Знайти магазин', 'Офіційні продавці'],
-    compareLink: null,
-    moreTitle: 'Більше варіантів',
-    moreLinks: ['Apple Premium Reseller'],
+    title: 'Огляд',
+    featured: ['Офіційні партнери', 'Обслуговування та підтримка'],
+    bottomLink: 'Переглянути всі варіанти',
+    columns: [],
   },
-} as const;
+};

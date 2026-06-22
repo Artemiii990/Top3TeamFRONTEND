@@ -3,8 +3,6 @@
 import s from './MegaMenu.module.css';
 import { MENU_DATA } from './menuData';
 
-type MenuKey = keyof typeof MENU_DATA;
-
 type Props = {
   activeMenu: string | null;
   onClose: () => void;
@@ -18,9 +16,13 @@ export default function MegaMenu({
 }: Props) {
   if (!activeMenu) return null;
 
-  const menu = MENU_DATA[activeMenu as MenuKey];
+  const menu = MENU_DATA[activeMenu];
 
   if (!menu) return null;
+
+  const extraColumns = menu.columns ?? [];
+  // Total columns = 1 (main) + however many extra columns this menu has (0-2)
+  const columnCount = 1 + extraColumns.length;
 
   return (
     <>
@@ -31,8 +33,8 @@ export default function MegaMenu({
         onMouseEnter={onKeepOpen}
         onMouseLeave={onClose}
       >
-        <div className={s.inner}>
-          {/* Column 1: title + bold featured links + compare link */}
+        <div className={s.inner} data-columns={columnCount}>
+          {/* Column 1: title + bold featured links + optional bottom link */}
           <div className={s.column}>
             <div className={s.label}>{menu.title}</div>
 
@@ -47,23 +49,25 @@ export default function MegaMenu({
               </a>
             ))}
 
-            {menu.compareLink && (
-              <a href="#" className={s.compare}>
-                {menu.compareLink}
+            {menu.bottomLink && (
+              <a href="#" className={s.bottomLink}>
+                {menu.bottomLink}
               </a>
             )}
           </div>
 
-          {/* Column 2: secondary title + smaller links */}
-          <div className={s.column}>
-            <div className={s.label}>{menu.moreTitle}</div>
+          {/* Extra columns: 0, 1, or 2 depending on the section */}
+          {extraColumns.map(col => (
+            <div className={s.column} key={col.title}>
+              <div className={s.label}>{col.title}</div>
 
-            {menu.moreLinks.map(item => (
-              <a key={item} href="#" className={s.secondary}>
-                {item}
-              </a>
-            ))}
-          </div>
+              {col.links.map(item => (
+                <a key={item} href="#" className={s.secondary}>
+                  {item}
+                </a>
+              ))}
+            </div>
+          ))}
         </div>
       </div>
     </>

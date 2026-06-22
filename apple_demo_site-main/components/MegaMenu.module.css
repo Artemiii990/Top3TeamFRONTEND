@@ -33,12 +33,29 @@
   margin: 0 auto;
 
   display: grid;
-  /* Wide first column for the bold model links,
-     narrow second column for the secondary links */
-  grid-template-columns: 2.4fr 1fr;
   gap: 64px;
 
   padding: 48px 32px;
+}
+
+/* Column count varies per section:
+   "Де купити" = 1 column, most product menus = 2, "Підтримка" = 3 */
+.inner[data-columns='1'] {
+  grid-template-columns: 1fr;
+  /* keep the single column from stretching full width */
+  max-width: 1200px;
+}
+
+.inner[data-columns='1'] .column {
+  max-width: 360px;
+}
+
+.inner[data-columns='2'] {
+  grid-template-columns: 2.4fr 1fr;
+}
+
+.inner[data-columns='3'] {
+  grid-template-columns: 1.6fr 1fr 1fr;
 }
 
 .column {
@@ -68,8 +85,9 @@
   opacity: 0.7;
 }
 
-/* Smaller, muted link under the bold list — e.g. "Порівняння моделей Mac" */
-.compare {
+/* Smaller, muted link under the bold list —
+   e.g. "Порівняння моделей Mac" / "Дізнатися про підтримку" / "Переглянути всі варіанти" */
+.bottomLink {
   margin-top: 6px;
   font-size: 14px;
   font-weight: 400;
@@ -77,11 +95,11 @@
   transition: opacity 0.2s ease;
 }
 
-.compare:hover {
+.bottomLink:hover {
   opacity: 0.7;
 }
 
-/* Regular-weight links in the second, narrower column */
+/* Regular-weight links in the extra columns */
 .secondary {
   font-size: 15px;
   font-weight: 400;
