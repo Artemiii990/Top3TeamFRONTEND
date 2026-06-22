@@ -15,9 +15,22 @@ export function useProducts() {
   const [products, setProducts] = useState<Product[]>(initial);
   const [search, setSearch] = useState('');
 
-  const filteredProducts = products.filter(p =>
-    p.name.toLowerCase().includes(search.toLowerCase())
-  );
+  const [category, setCategory] = useState('all');
+  const [status, setStatus] = useState('all');
+
+  const filteredProducts = products.filter(p => {
+  const matchSearch = p.name
+    .toLowerCase()
+    .includes(search.toLowerCase());
+
+  const matchCategory =
+    category === 'all' || p.category === category;
+
+  const matchStatus =
+    status === 'all' || p.status === status;
+
+  return matchSearch && matchCategory && matchStatus;
+});
 
   const addProduct = (data: Omit<Product, 'id'>) => {
     setProducts(prev => [
@@ -40,6 +53,10 @@ export function useProducts() {
     products: filteredProducts,
     search,
     setSearch,
+    category,
+    setCategory,
+    status,
+    setStatus,
     addProduct,
     updateProduct,
     deleteProduct,

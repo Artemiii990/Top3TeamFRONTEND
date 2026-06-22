@@ -11,6 +11,10 @@ export default function ProductsPage() {
     products,
     search,
     setSearch,
+    category,
+    setCategory,
+    status,
+    setStatus,
     addProduct,
     updateProduct,
     deleteProduct,
@@ -68,7 +72,7 @@ export default function ProductsPage() {
       >
         <h1>Products</h1>
 
-        <div style={{ display: 'flex', gap: 12 }}>
+        <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
@@ -79,6 +83,25 @@ export default function ProductsPage() {
               border: '1px solid #ddd',
             }}
           />
+
+          <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          >
+            <option value="all">All categories</option>
+            <option value="Phones">Phones</option>
+            <option value="Laptops">Laptops</option>
+            <option value="Audio">Audio</option>
+          </select>
+
+          <select
+            value={status}
+            onChange={(e) => setStatus(e.target.value)}
+          >
+            <option value="all">All status</option>
+            <option value="Active">Active</option>
+            <option value="Draft">Draft</option>
+          </select>
 
           <Button onClick={openCreate}>
             + Add Product
