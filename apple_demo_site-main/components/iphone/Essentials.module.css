@@ -1,0 +1,113 @@
+.section {
+  background: var(--ink-black);
+  padding: 64px 0 96px;
+}
+
+.headerRow {
+  padding: 0 80px;
+  margin-bottom: 40px;
+}
+
+.heading {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(32px, 4vw, 44px);
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+/* ============================================================
+   TRACK — plain two-up grid, no scrolling/arrows needed here.
+   ============================================================ */
+.track {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  list-style: none;
+  padding: 0 80px;
+}
+
+.card {
+  background: var(--paper);
+  border-radius: 18px;
+  padding: 48px 40px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+}
+
+.cardTitle {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.cardDescription {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  text-align: center;
+  max-width: 420px;
+  margin-bottom: 40px;
+}
+
+/* Placeholder photo grid — swap individual .tile divs for real <img>
+   product photos later; the grid layout won't need to change. */
+.tileGrid {
+  display: grid;
+  gap: 12px;
+  width: 100%;
+}
+.tileGrid[data-count="3"] {
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 360px;
+}
+.tileGrid[data-count="8"] {
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 420px;
+}
+
+.tile {
+  aspect-ratio: 1 / 1;
+  border-radius: 14px;
+  transition: transform 0.3s var(--ease);
+}
+
+/* A gentle secondary lift on the tiles themselves when the card is
+   hovered, so the photos feel alive rather than static. */
+.card:hover .tile {
+  transform: scale(1.03);
+}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+@media (max-width: 900px) {
+  .section {
+    padding: 48px 0 64px;
+  }
+  .headerRow {
+    padding: 0 24px;
+    margin-bottom: 28px;
+  }
+  .track {
+    grid-template-columns: 1fr;
+    padding: 0 24px;
+    gap: 16px;
+  }
+  .card {
+    padding: 32px 24px 28px;
+  }
+  .cardTitle {
+    font-size: 22px;
+  }
+}
