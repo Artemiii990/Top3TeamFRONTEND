@@ -1,0 +1,85 @@
+.hero {
+  background: var(--ink-black);
+  padding: 64px 80px 96px;
+}
+
+/* "iPhone" big bold headline, left-aligned */
+.headline {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(48px, 7vw, 80px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: 56px;
+}
+
+.tiles {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  gap: 48px;
+}
+
+.tile {
+  flex: 0 1 auto;
+}
+
+.tileLink {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+}
+
+/* Placeholder for a future product photo — swap this span for an <img> later */
+.imagePlaceholder {
+  width: 70px;
+  height: 140px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, var(--ink-titanium), var(--paper));
+  border: 1px solid var(--rule);
+  transition: transform 0.25s var(--ease);
+}
+
+.tileLink:hover .imagePlaceholder {
+  transform: translateY(-2px);
+}
+
+.tileLabel {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+.tileTag {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  margin-top: -10px;
+}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+@media (max-width: 900px) {
+  .hero {
+    padding: 40px 24px 64px;
+  }
+  .headline {
+    margin-bottom: 40px;
+  }
+  .tiles {
+    gap: 28px 24px;
+  }
+  .imagePlaceholder {
+    width: 56px;
+    height: 112px;
+  }
+  .tileLabel {
+    font-size: 13px;
+  }
+}

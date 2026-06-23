@@ -1,4 +1,5 @@
-import Nav from '@/components/Nav';
+import Nav from '@/components/iphone/Nav';
+import Hero from '@/components/iphone/Hero';
 import Footer from '@/components/iphone/Footer';
 
 export default function IphonePage() {
@@ -6,16 +7,8 @@ export default function IphonePage() {
     <>
       <Nav />
 
-      <main
-        style={{
-          minHeight: '100vh',
-          paddingTop: '120px',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <h1>iPhone Page</h1>
+      <main style={{ paddingTop: '92px' }}>
+        <Hero />
       </main>
 
       <Footer />
