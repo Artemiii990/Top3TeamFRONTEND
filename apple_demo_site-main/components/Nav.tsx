@@ -4,18 +4,19 @@ import { useEffect, useState, useRef } from 'react';
 import s from './Nav.module.css';
 import MegaMenu from './MegaMenu';
 import SearchPanel from './SearchPanel';
+import Link from 'next/link';
 
-const LINKS: { label: string; active?: boolean }[] = [
-  { label: 'Store' },
-  { label: 'Mac' },
-  { label: 'iPad' },
-  { label: 'iPhone' },
-  { label: 'Watch' },
-  { label: 'AirPods' },
-  { label: 'TV' },
-  { label: 'Сервіси' },
-  { label: 'Підтримка' },
-  { label: 'Де купити' },
+const LINKS = [
+  { label: 'Store', href: '/' },
+  { label: 'Mac', href: '/mac' },
+  { label: 'iPad', href: '/ipad' },
+  { label: 'iPhone', href: '/iphone' },
+  { label: 'Watch', href: '/watch' },
+  { label: 'AirPods', href: '/airpods' },
+  { label: 'TV', href: '/tv' },
+  { label: 'Сервіси', href: '/services' },
+  { label: 'Підтримка', href: '/support' },
+  { label: 'Де купити', href: '/buy' },
 ];
 
 export default function Nav() {
@@ -88,7 +89,7 @@ export default function Nav() {
     {/* NAV */}
     <nav className={s.nav} data-open={open} aria-label="Apple">
       {/* LOGO */}
-      <a href="#" className={s.logo} aria-label="Apple">
+      <Link href="/" className={s.logo} aria-label="Apple">
         <svg
           viewBox="0 0 14 44"
           xmlns="http://www.w3.org/2000/svg"
@@ -100,15 +101,14 @@ export default function Nav() {
             d="M9.9301 13.4151c.5921-.7166 1.0014-1.7184.8856-2.7167-.8536.0359-1.9009.5703-2.5187 1.2814-.5491.6324-1.0455 1.6539-.9148 2.6308.9536.0703 1.9268-.4707 2.5479-1.1955"
           />
         </svg>
-      </a>
+      </Link>
 
       {/* LINKS */}
       <div id="mobile-nav-links" className={s.links}>
-        {LINKS.map(({ label, active }) => (
-          <a
+        {LINKS.map(({ label, href }) => (
+          <Link
             key={label}
-            href="#"
-            className={active ? s.active : undefined}
+            href={href}
             onMouseEnter={() => {
               if (window.innerWidth > 900) {
                 openMenu(label);
@@ -117,7 +117,7 @@ export default function Nav() {
             onClick={() => setOpen(false)}
           >
             {label}
-          </a>
+          </Link>
         ))}
       </div>
 
