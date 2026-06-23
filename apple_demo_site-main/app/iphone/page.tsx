@@ -4,6 +4,7 @@ import Footer from '@/components/iphone/Footer';
 import Lineup from '@/components/iphone/Lineup';
 import MeetIphone from '@/components/iphone/MeetIphone';
 import Essentials from '@/components/iphone/Essentials';
+import FamilyTies from '@/components/iphone/FamilyTies';
 
 export default function IphonePage() {
   return (
@@ -15,6 +16,7 @@ export default function IphonePage() {
         <Lineup />
         <MeetIphone />
         <Essentials />
+        <FamilyTies />
       </main>
 
       <Footer />
