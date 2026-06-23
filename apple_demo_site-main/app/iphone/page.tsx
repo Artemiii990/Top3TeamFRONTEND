@@ -1,5 +1,5 @@
 import Nav from '@/components/Nav';
-import Footer from '@/components/Footer';
+import Footer from '@/components/iphone/Footer';
 
 export default function IphonePage() {
   return (
@@ -15,9 +15,7 @@ export default function IphonePage() {
           alignItems: 'center',
         }}
       >
-
         <h1>iPhone Page</h1>
-        
       </main>
 
       <Footer />
