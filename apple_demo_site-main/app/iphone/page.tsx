@@ -15,6 +15,7 @@ export default function IphonePage() {
           alignItems: 'center',
         }}
       >
+
         <h1>iPhone Page</h1>
         
       </main>
