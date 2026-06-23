@@ -7,10 +7,10 @@
 }
 
 .notes {
-  max-width: 100%; /*900px -> 100%. дозволяє тексту розтягнутися по всій ширині футера*/
-  margin-bottom: 24px; /*64 -> 24. відступ від приміток до лінії*/
-  padding-bottom: 24px; /*внутрішній відступ від тексту до лінії*/
-  border-bottom: 1px solid var(--rule); /*лінія під текстом*/
+  max-width: 100%;
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--rule);
   line-height: 1.6;
   font-size: 11px;
   color: var(--text-tertiary);
@@ -21,32 +21,72 @@
 .notes a {
   text-decoration: underline;
 }
-
-/*прибираємо відступ знизу для останнього абзацу*/
 .notes p:last-child {
   margin-bottom: 0;
 }
 
+/* BREADCRUMB ROW */
+.breadcrumbs {
+  display: flex;
+  align-items: center;   /* вертикальне центрування логотипу, ">" і тексту */
+  gap: 6px;
+  height: 22px;           /* тонкий рядок, а не великий блок */
+  margin-bottom: 24px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 14px;           /* висота apple-логотипу */
+  color: var(--text-secondary);
+  transition: color 0.2s var(--ease);
+}
+.logo svg {
+  width: 12px;
+  height: 44px;            /* КЛЮЧОВЕ: без цього svg тягне свій intrinsic
+                               розмір (44px+) і виглядає величезним */
+  fill: currentColor;
+  display: block;
+}
+.logo:hover {
+  color: var(--text-primary);
+}
+
+.separator {
+  color: var(--text-tertiary);
+  font-size: 14px;
+  line-height: 1;
+}
+
+.crumbActive {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s var(--ease);
+}
+.crumbActive:hover {
+  color: var(--text-primary);
+}
+
 .links {
   display: flex;
-  justify-content: space-between; /*рівномірно розподіляє усі колонки по ширині*/
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px; /*48 -> 24*/
-  /*gap: 40px 48px; перше число (40рх) - це відступ між блоками, які стоять один під одним*/
-  padding-bottom: 24px; /*зменшуємо внутрішній відступ знизу з 48 до 24*/
-  /*border-bottom: 1px solid var(--rule);*/
-  margin-bottom: 16px; /*32 -> 16*/
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 24px;
+  margin-bottom: 16px;
 }
 .links h6 {
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--text-primary);
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
 .links a {
   display: block;
   color: var(--text-tertiary);
-  padding: 4px 0; /*щільні відступи між посиланнями*/
+  padding: 4px 0;
   font-size: 12px;
   text-decoration: none;
   transition: color 0.2s var(--ease);
@@ -55,22 +95,14 @@
   color: var(--text-primary);
 }
 
-.links h6 {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: 10px; /*компактний відступ від заголовка до лінків*/
-}
-
-/*кожна з 4-х колонок росте вниз*/
-.column { 
+.column {
   display: flex;
   flex-direction: column;
-  flex: 1; /*однакова ширина для усіх стовпчиків*/
-  gap: 24px; /*відступ між верхньою та нижньою колонками*/
+  flex: 1;
+  gap: 24px;
 }
 
-.sectionBlock { 
+.sectionBlock {
   display: block;
   flex-direction: column;
 }
@@ -78,26 +110,23 @@
 .partnerText {
   font-size: 12px;
   color: var(--text-tertiary);
-  padding-bottom: 16px; /*відступ від тексту до лінії*/
-  border-bottom: 1px solid var(--rule); /*лінія тепер знаходиться тут*/
-  margin-bottom: 24px; /*відступ від лінії вниз до копірайту*/
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 24px;
   line-height: 1.5;
 }
-
 .partnerText a {
   color: #0066cc;
-  text-decoration: underline; /*підкреслення лінку*/
+  text-decoration: underline;
   transition: color 0.2s var(--ease);
 }
-
 .partnerText a:hover {
   color: #004499;
 }
 
-/*головний контейнер копірайту*/
 .copyrightBlock {
   display: flex;
-  justify-content: space-between; /*текст ліворуч, а лінки праворуч*/
+  justify-content: space-between;
   align-items: center;
   font-size: 11px;
   color: var(--text-tertiary);
@@ -105,59 +134,43 @@
   flex-wrap: wrap;
   gap: 12px;
 }
-
-/*текст копірайту*/
 .copyrightText {
   margin-right: 24px;
 }
-
-/*контейнер для посилань*/
 .copyrightLinks {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
 }
-
-/*стиль для кожного посилання*/
 .copyrightLinks a {
   color: var(--text-tertiary);
   text-decoration: none;
   padding: 0 10px;
-  /*вертикальна лінія праворуч до кожного посилання*/
   border-right: 1px solid var(--rule);
   transition: color 0.2s var(--ease);
 }
-
 .copyrightLinks a:hover {
   color: var(--text-primary);
   text-decoration: underline;
 }
-
-/*прибираємо вертикальну лінію в останнього посилання*/
 .copyrightLinks a:last-child {
   border-right: none;
   padding-right: 0;
 }
-
-/*перше посилання по ліву сторону*/
 .copyrightLinks a:first-child {
   padding-left: 0;
 }
-
-/*стиль для слова Україна*/
 .langLink {
-  margin-left: auto; /*для десктопу зміщення максимально праворуч*/
+  margin-left: auto;
 }
 
-/*адаптивність для мобільних екранів*/
 @media (max-width: 768px) {
   .copyrightBlock {
     flex-direction: column;
-    align-items: flex-start; /*на смартфоні повинні бути один під одним*/
+    align-items: flex-start;
   }
-
   .copyrightLinks a {
-    padding: 4px 8px 4px 0; /*зручніші відступи для телефону*/
+    padding: 4px 8px 4px 0;
   }
 }
 
