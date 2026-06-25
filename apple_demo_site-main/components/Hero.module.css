@@ -89,9 +89,18 @@
 }
 
 /* Індивідуальні ліміти для великих картинок, щоб вони не перекривали текст */
+/*Індивідуальні ліміти та збільшення для головного банера iPhone*/
 .hero .media img {
-  max-width: 980px;
-  max-height: 420px; 
+  max-width: 100%; /*980px -> 100%*/
+  max-height: 480px; /* Збільшуємо ліміт висоти з 420px до 480px */
+
+  object-fit: contain;
+  
+  /* scale(1.2) робить лінійку iPhone більшою на 20% */
+  /* translateY(-10px) акуратно піднімає картинку вгору, щоб вона гарно сиділа в банері */
+  transform: scale(1.3) translateY(-50px);
+  
+  transform-origin: bottom center; /* Картинка збільшується від нижнього краю */
 }
 
 .ipad .media img {
@@ -310,6 +319,24 @@
      оскільки брудних білих країв більше немає і ховати картинку вниз не потрібно */
   transform: scale(1.33) translateY(0); 
   transform-origin: center center;
+}
+
+/* --- ТОЧКОВІ ЗМІНИ ДЛЯ IPAD PRO ТА WATCH SERIES 11 --- */
+
+.grid .card:nth-of-type(5) .cardText, .grid .card:nth-of-type(6) .cardText {
+  position: relative;
+  z-index: 10; /* Піднімає текст вище за будь-яку картинку */
+}
+
+.grid .card:nth-of-type(5) .cardMedia img,
+.grid .card:nth-of-type(6) .cardMedia img {
+  max-height: 510px; /* Даємо картинкам більше простору для росту */
+  width: auto;
+  object-fit: contain;
+  
+  /* Збільшуємо тільки ці дві картки на 22% і піднімаємо вгору */
+  transform: scale(1.44) translateY(-40px); 
+  transform-origin: bottom center;
 }
 
 
