@@ -23,7 +23,7 @@ function TabletBanner() {
   return (
     <section className={`${s.section} ${s.ipad}`}>
       <div className={s.content}>
-        <h2 className={s.title}>iPad air</h2>
+        <h2 className={s.title}>iPad <span className={s.airText}>air</span></h2>
         <p className={s.subtitle}>Відтепер з турбопотужністю M4.</p>
 
         <div className={s.actions}>
