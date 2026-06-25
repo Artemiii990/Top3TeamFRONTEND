@@ -268,6 +268,26 @@
 }
 
 
+/* --- ЗМІНИ ДЛЯ КАРТКИ (MacBook Pro) --- */
+
+/* 1. Виводимо текст другої картки на передній план */
+.grid .card:nth-of-type(2) .cardText {
+  position: relative;
+  z-index: 10; /* Піднімає текст вище за будь-яку картинку */
+}
+
+/* 2. Збільшуємо ноутбук і заганяємо його під текст */
+.grid .card:nth-of-type(2) .cardMedia img {
+  max-height: 500px;
+  width: auto;
+  object-fit: contain;
+  
+  /* Повертаємо початкове сильне збільшення та підйом вгору */
+  transform: scale(1.15) translateY(-110px); 
+  transform-origin: bottom center;
+}
+
+
 /* ---------------- ANIMATION ---------------- */
 
 @keyframes fadeUp {
