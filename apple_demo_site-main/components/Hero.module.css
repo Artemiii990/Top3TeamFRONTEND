@@ -34,7 +34,7 @@
 /* ---------------- iPad ---------------- */
 
 .ipad {
-  background: #f5f5f7; 
+  background: linear-gradient(to bottom, #addcee 30%, #b3deef 50%, #c1e3ef, #cbe7f2, #d9ecf3 100%);
   color: #1d1d1f;
   padding-top: 60px;
 }
@@ -90,8 +90,15 @@
 }
 
 .ipad .media img {
-  max-width: 850px;
-  max-height: 420px;
+  max-width: 100%; /* Дозволяємо картинці зайняти більше простору по ширині */
+  max-height: 666px; /* підняти висоту */
+  object-fit: contain; /* Залишаємо contain, щоб планшет не деформувався */
+
+  /* scale(1.15) збільшує, а translateY(-20px) акуратно піднімає картинку вгору на 20 пікселів */
+  transform: scale(1.19) translateY(-50px);
+
+  /*transform: scale(1.15); /* Збільшуємо масштаб на 15% */
+  transform-origin: bottom center; /* Збільшення йде від нижнього краю, щоб планшет міцно стояв на дні */
 }
 
 .mac .media img {
