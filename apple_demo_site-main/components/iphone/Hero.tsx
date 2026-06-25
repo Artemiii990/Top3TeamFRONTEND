@@ -9,11 +9,11 @@ type Tile = {
 };
 
 const TILES: Tile[] = [
-  { label: 'iPhone 17 Pro', href: '/iphone/17-pro', image: '/images/iPhone/iphone_17pro.png' },
-  { label: 'iPhone Air', href: '/iphone/air', image: '/images/iPhone/iphone-air.png' },
-  { label: 'iPhone 17', href: '/iphone/17', image: '/images/iPhone/iphone_17.png' },
-  { label: 'iPhone 17e', href: '/iphone/17e', image: '/images/iPhone/iphone_17e.png', tag: 'Новий' },
-  { label: 'iPhone 16', href: '/iphone/16', image: '/images/iPhone/iphone_16.png' },
+  { label: 'iPhone 17 Pro', href: '/iphone/iphone-17-pro', image: '/images/iPhone/iphone_17pro.png' },
+  { label: 'iPhone Air', href: '/iphone/iphone-air', image: '/images/iPhone/iphone-air.png' },
+  { label: 'iPhone 17', href: '/iphone/iphone-17', image: '/images/iPhone/iphone_17.png' },
+  { label: 'iPhone 17e', href: '/iphone/iphone-17e', image: '/images/iPhone/iphone_17e.png', tag: 'Новий' },
+  { label: 'iPhone 16', href: '/iphone/iphone-16', image: '/images/iPhone/iphone_16.png' },
   { label: 'Порівняйте', href: '/iphone/compare', image: '/images/iPhone/compare_phones.png' },
 ];
 
