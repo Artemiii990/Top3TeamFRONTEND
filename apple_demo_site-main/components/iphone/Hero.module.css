@@ -36,16 +36,22 @@
 /* Real product photo wrapper — replaces the old gradient placeholder */
 .imageWrap {
   display: flex;
-  align-items: center;
+  align-items: flex-end; /* притискає телефони до низу */
   justify-content: center;
-  width: 70px;
-  height: 140px;
+
+  /* ЗАДАЄМО ОДНАКОВИЙ РОЗМІР ДЛЯ ВСІХ БЛОКІВ */
+  width: 88px; /* Чітка ширина контейнера */
+  height: 144px; /* Чітка висота контейнера */
+  margin-bottom: 14px;
   transition: transform 0.25s var(--ease);
 }
 
 .tileImage {
-  width: 100%;
-  height: 100%;
+  /* Картинка заповнює контейнер, але зберігає свої пропорції */
+  width: auto; /*100% -> auto*/
+  height: auto; /*100% -> auto*/
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
 }
 
@@ -66,6 +72,26 @@
   font-weight: 600;
   color: var(--accent);
   margin-top: -10px;
+}
+
+/* Робимо контейнер останньої картинки базою для позиціонування */
+.tiles .tile:last-child .imageWrap {
+  position: relative; 
+}
+
+/* Керуємо безпосередньо розміром та положенням останньої картинки */
+.tiles .tile:last-child .tileImage {
+  position: absolute;
+  bottom: 0; 
+  left: 60%;
+  transform: translateX(-50%);
+
+  width: auto;
+  height: auto;
+  
+  /* ТУТ ЗАДАЄТЬСЯ РОЗМІР: змінюємо max-height на той розмір, який потрібен */
+  max-height: 130px; 
+  max-width: none; 
 }
 
 /* ============================================================
