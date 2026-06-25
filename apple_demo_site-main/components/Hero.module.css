@@ -26,7 +26,13 @@
 /* ---------------- MAC ---------------- */
 
 .mac {
-  background: #f5f5f7;
+
+  background: 
+    /*1. Шар для правої сторони: йде зверху-вниз, займає 50% ширини і 100% висоти справа*/
+    linear-gradient(to bottom, #d4eaf5 10%, #ebf2f8 60%, #f2f6f9 100%) no-repeat left top / 50% 100%,
+
+    /* 2. Базовий шар для лівої сторони та центру: йде зліва направо */
+    linear-gradient(to bottom, #e0eef7 0%, #e9f2f7, #e5f0f6 15%, #f3f7fa, #f9f9f9 100%) no-repeat right top / 100% 100%;
   color: #1d1d1f;
   padding-top: 60px;
 }
@@ -102,8 +108,12 @@
 }
 
 .mac .media img {
-  max-width: 900px;
-  max-height: 380px;
+  max-width: 100%; 
+  max-height: 610px; 
+  object-fit: contain;
+  /* scale(1.18) робить макбук більшим, а translateY(-25px) піднімає його над нижньою межею */
+  transform: scale(1.28) translateY(-100px);
+  transform-origin: bottom center;
 }
 
 /* ---------------- ACTIONS / BUTTONS ---------------- */
