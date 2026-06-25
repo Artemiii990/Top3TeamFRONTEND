@@ -67,10 +67,12 @@
   text-align: center;
 }
 
+/*напис "новий" під айфоном*/
 .tileTag {
   font-size: 12px;
   font-weight: 600;
-  color: var(--accent);
+  /* color: var(--accent); */
+  color: #bf4800;
   margin-top: -10px;
 }
 
