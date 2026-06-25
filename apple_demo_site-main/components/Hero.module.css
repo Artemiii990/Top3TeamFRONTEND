@@ -1,22 +1,26 @@
 /* ---------------- LAYOUT BASE ---------------- */
 
 .section {
-  min-height: 100vh;
+  min-height: 580px; 
+  height: 75vh; /* Зберігаємо фіксовану висоту для десктопів */
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between; /* Текст завжди вгорі, медіа завжди внизу */
   text-align: center;
   position: relative;
-  padding: 96px 24px 0;
+  padding: 56px 24px 0;
   overflow: hidden;
+  margin-bottom: 12px;
+  box-sizing: border-box;
 }
 
-/* ---------------- HERO ---------------- */
+/* ---------------- HERO (iPhone) ---------------- */
 
 .hero {
-  background: #000;
-  color: #fff;
+  background: #f5f5f7; 
+  color: #1d1d1f;      
+  padding-top: 120px; /*60 -> 120*/  
 }
 
 /* ---------------- MAC ---------------- */
@@ -24,13 +28,15 @@
 .mac {
   background: #f5f5f7;
   color: #1d1d1f;
+  padding-top: 60px;
 }
 
 /* ---------------- iPad ---------------- */
 
 .ipad {
-  background: #eaf3fb;
+  background: #f5f5f7; 
   color: #1d1d1f;
+  padding-top: 60px;
 }
 
 /* ---------------- CONTENT ---------------- */
@@ -39,57 +45,72 @@
   position: relative;
   z-index: 2;
   max-width: 900px;
+  margin-top: 0;
   flex-shrink: 0;
-  animation: fadeUp 0.8s ease both;
+  animation: fadeUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) both;
 }
 
 .title {
-  font-size: clamp(40px, 6vw, 80px);
+  font-size: clamp(40px, 4.5vw, 56px); 
   font-weight: 600;
-  letter-spacing: clamp(-0.02em, -0.01em, 0);
-  line-height: 1.05;
+  letter-spacing: -0.005em;
+  line-height: 1.07;
 }
 
 .subtitle {
-  margin-top: 12px;
-  font-size: clamp(17px, 1.6vw, 24px);
-  opacity: 0.8;
+  margin-top: 6px;
+  font-size: clamp(19px, 2vw, 24px); 
+  line-height: 1.21;
+  opacity: 1; 
   font-weight: 400;
 }
 
 /* ---------------- MEDIA (banners) ---------------- */
-/* Image flows naturally below the text, never overlaps it */
 
 .media {
-  width: 100%;
-  flex: 1;
   display: flex;
-  align-items: flex-end;
+  align-items: flex-end; /* Жорстко притискає до нижнього краю */
   justify-content: center;
-  margin-top: 32px;
+  width: 100%;
+  flex: 1; 
+  margin-top: 24px;
 }
 
 .media img {
-  width: min(900px, 88vw);
-  max-height: 60vh;
-  height: auto;
+  width: 100%; /* Дозволяє картинці адаптуватися по ширині блоку */
+  height: auto; /* Захищає від пропорційного стискання */
   object-fit: contain;
+  vertical-align: bottom;
+}
+
+/* Індивідуальні ліміти для великих картинок, щоб вони не перекривали текст */
+.hero .media img {
+  max-width: 980px;
+  max-height: 420px; 
+}
+
+.ipad .media img {
+  max-width: 850px;
+  max-height: 420px;
+}
+
+.mac .media img {
+  max-width: 900px;
+  max-height: 380px;
 }
 
 /* ---------------- ACTIONS / BUTTONS ---------------- */
 
 .actions {
-  margin-top: 20px;
+  margin-top: 14px;
   display: flex;
   gap: 16px;
   justify-content: center;
 }
 
-/* Fallback button styling so the pill-blue CTA renders even if
-   global .btn / .btn-primary classes aren't defined yet */
 .cta {
   display: inline-block;
-  padding: 12px 22px;
+  padding: 11px 21px;
   border-radius: 980px;
   background: #0071e3;
   color: #fff;
@@ -105,11 +126,11 @@
 }
 
 .cta:active {
-  transform: scale(0.97);
+  transform: scale(0.98);
 }
 
 .cta:focus-visible {
-  outline: 2px solid #fff;
+  outline: 2px solid #0071e3;
   outline-offset: 3px;
 }
 
@@ -118,8 +139,10 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 2px;
+  gap: 12px;
+  padding: 0 12px 12px;
   background: #fff;
+  box-sizing: border-box;
 }
 
 @media (max-width: 900px) {
@@ -132,11 +155,11 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 580px;
+  height: 580px; 
   padding: 56px 40px 0;
   text-align: center;
   overflow: hidden;
-  transition: transform 0.3s ease;
+  box-sizing: border-box;
 }
 
 .cardLight {
@@ -145,26 +168,26 @@
 }
 
 .cardDark {
-  background: #000;
+  background: #000000; 
   color: #fff;
 }
 
 .cardText {
   flex-shrink: 0;
-  animation: fadeUp 0.8s ease both;
+  animation: fadeUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) both;
 }
 
 .cardTitle {
   font-size: clamp(28px, 3vw, 40px);
   font-weight: 600;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
 }
 
 .cardSubtitle {
-  margin-top: 8px;
-  font-size: clamp(15px, 1.4vw, 19px);
-  opacity: 0.8;
-  max-width: 480px;
+  margin-top: 6px;
+  font-size: clamp(16px, 1.5vw, 19px);
+  opacity: 1;
+  max-width: 420px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -172,22 +195,23 @@
 .cardMedia {
   flex: 1;
   display: flex;
-  align-items: flex-end;
+  align-items: flex-end; 
   justify-content: center;
   margin-top: 24px;
+  width: 100%;
 }
 
 .cardMedia img {
-  width: 100%;
-  max-width: 420px;
-  max-height: 340px;
+  width: 100%; /* Картинка адаптивна всередині своєї колонки */
   height: auto;
+  max-height: 360px; /* Чіткий ліміт висоти для карток */
   object-fit: contain;
-  transition: transform 0.4s ease;
+  vertical-align: bottom;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .card:hover .cardMedia img {
-  transform: translateY(-6px) scale(1.02);
+  transform: scale(1.02); 
 }
 
 /* ---------------- ANIMATION ---------------- */
@@ -195,7 +219,7 @@
 @keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(24px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -219,26 +243,33 @@
 
 @media (max-width: 900px) {
   .section {
+    height: 520px;
     min-height: auto;
-    padding: 72px 20px 0;
+    padding: 48px 20px 0;
   }
 
-  .media img {
-    max-height: 46vh;
+  .hero .media img,
+  .ipad .media img,
+  .mac .media img {
+    max-height: 280px;
   }
 
   .card {
-    min-height: 460px;
+    height: 500px;
     padding: 48px 24px 0;
+  }
+
+  .cardMedia img {
+    max-height: 260px;
   }
 }
 
 @media (max-width: 480px) {
   .title {
-    font-size: 36px;
+    font-size: 32px;
   }
 
   .subtitle {
-    font-size: 16px;
+    font-size: 17px;
   }
 }

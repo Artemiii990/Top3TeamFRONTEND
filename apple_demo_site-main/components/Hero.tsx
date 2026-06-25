@@ -8,12 +8,12 @@ function HeroBanner() {
         <p className={s.subtitle}>Зустрічайте найновішу лінійку iPhone</p>
 
         <div className={s.actions}>
-          <button className={`btn btn-primary ${s.cta}`}>Детальніше</button>
+          <a href='#' className={s.cta}>Детальніше</a>
         </div>
       </div>
 
       <div className={s.media}>
-        <img src="/images/iphone.webp" alt="iPhone" />
+        <img src="/images/iphone.jpg" alt="iPhone" />
       </div>
     </section>
   );
@@ -27,12 +27,12 @@ function TabletBanner() {
         <p className={s.subtitle}>Відтепер з турбопотужністю M4.</p>
 
         <div className={s.actions}>
-          <button className={`btn btn-primary ${s.cta}`}>Детальніше</button>
+          <a href='#' className={s.cta}>Детальніше</a>
         </div>
       </div>
 
       <div className={s.media}>
-        <img src="/images/ipad.png" alt="iPad" />
+        <img src="/images/apple-ipad-air.jpg" alt="iPad" />
       </div>
     </section>
   );
@@ -46,12 +46,12 @@ function MacBanner() {
         <p className={s.subtitle}>Відтепер з турбопотужністю M5.</p>
 
         <div className={s.actions}>
-          <button className={`btn btn-primary ${s.cta}`}>Детальніше</button>
+          <a href='#' className={s.cta}>Детальніше</a>
         </div>
       </div>
 
       <div className={s.media}>
-        <img src="/images/macbook.png" alt="MacBook" />
+        <img src="/images/macbook-air.jpg" alt="MacBook" />
       </div>
     </section>
   );
@@ -70,42 +70,42 @@ const CARDS: Card[] = [
     id: 'airpods-max',
     title: 'AirPods Max 2',
     subtitle: 'Звучання. У ремастерингу.',
-    image: '/images/airpods.png',
+    image: '/images/airpods.jpeg',
     theme: 'light',
   },
   {
     id: 'macbook-pro',
     title: 'MacBook Pro',
     subtitle: 'Тепер із M5, M5 Pro або M5 Max.',
-    image: '/images/macbook-pro.png',
+    image: '/images/macbook-pro.jpg',
     theme: 'dark',
   },
   {
     id: 'airpods-pro',
     title: 'AirPods Pro 3',
     subtitle: 'Неймовірне активне поглинання шуму.',
-    image: '/images/airpods-pro.png',
+    image: '/images/airpods-pro.jpg',
     theme: 'light',
   },
   {
     id: 'watch-ultra',
     title: 'Watch Ultra 3',
     subtitle: 'Ручний звір.',
-    image: '/images/watch.png',
+    image: '/images/watch.jpg',
     theme: 'dark',
   },
   {
     id: 'ipad-pro',
     title: 'iPad Pro',
     subtitle: 'Розширена продуктивність ШІ та можливості, що змінюють правила гри.',
-    image: '/images/ipad-pro.png',
+    image: '/images/ipad-pro.jpg',
     theme: 'dark',
   },
   {
     id: 'watch-series',
     title: 'Watch Series 11',
     subtitle: "Чудовий спосіб стежити за своїм здоров'ям.",
-    image: '/images/watch-series.png',
+    image: '/images/watch-series.jpg',
     theme: 'light',
   },
 ];
@@ -122,7 +122,7 @@ function GridSection() {
             <h3 className={s.cardTitle}>{card.title}</h3>
             <p className={s.cardSubtitle}>{card.subtitle}</p>
             <div className={s.actions}>
-              <button className={`btn btn-primary ${s.cta}`}>Детальніше</button>
+              <a href='#' className={s.cta}>Детальніше</a>
             </div>
           </div>
 
