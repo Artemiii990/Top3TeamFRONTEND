@@ -64,9 +64,9 @@
   -webkit-text-fill-color: transparent;
   
   /* 5. Додаємо м'яке об'ємне світіння навколо літер */
-  /*text-shadow: 0px 2px 8px rgba(59, 130, 246, 0.2);*/
+  text-shadow: 0px 2px 8px rgba(59, 130, 246, 0.2);
   /* 5. Накладаємо чисту тінь через фільтр */
-  filter: drop-shadow(0px 2px 6px rgba(59, 130, 246, 0.3));
+  /*filter: drop-shadow(0px 2px 6px rgba(59, 130, 246, 0.3));*/
   
   /* 6. Акуратно піднімаємо слово вгору на пару пікселів */
   display: inline-block;
