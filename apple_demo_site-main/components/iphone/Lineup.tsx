@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import s from './Lineup.module.css';
 
 type Model = {
@@ -8,7 +9,7 @@ type Model = {
   tag?: string; // e.g. "Новий"
   description: string;
   colors: string[]; // swatch colors, first = currently shown
-  tint: string; // CSS background for the placeholder photo area
+  image: string; // path under /public
   moreHref: string;
   buyHref: string;
 };
@@ -18,7 +19,7 @@ const MODELS: Model[] = [
     name: 'iPhone 17 Pro',
     description: 'Інноваційний дизайн для чудової продуктивності й тривалого часу роботи від акумулятора.',
     colors: ['#3a3a3c', '#2c3e75', '#e8e8ed'],
-    tint: 'linear-gradient(160deg, #1a1a1a, #c8631f)',
+    image: '/images/iPhone/iphone-17pro_more.jpg',
     moreHref: '/iphone/17-pro',
     buyHref: '/buy?iphone=17-pro',
   },
@@ -26,7 +27,7 @@ const MODELS: Model[] = [
     name: 'iPhone Air',
     description: 'Найтонший серед iPhone. З професійною потужністю.',
     colors: ['#bcd4e6', '#e3c89a', '#f2f2f2', '#2c2c2e'],
-    tint: 'linear-gradient(160deg, #aac3d6, #7d97ab)',
+    image: '/images/iphone/iphone-air_more.jpg',
     moreHref: '/iphone/air',
     buyHref: '/buy?iphone=air',
   },
@@ -34,7 +35,7 @@ const MODELS: Model[] = [
     name: 'iPhone 17',
     description: 'Ще неймовірніший. Ще надійніший.',
     colors: ['#c9b6e0', '#9cb88a', '#a9c3dd', '#f2f2f2', '#2c2c2e'],
-    tint: 'linear-gradient(160deg, #d6c3e8, #b39bce)',
+    image: '/images/iphone/iphone-17_more.jpg',
     moreHref: '/iphone/17',
     buyHref: '/buy?iphone=17',
   },
@@ -43,7 +44,7 @@ const MODELS: Model[] = [
     tag: 'Новий',
     description: 'Огоздібний. Оцетаквигідний.',
     colors: ['#f4c9ce', '#f2f2f2', '#2c2c2e'],
-    tint: 'linear-gradient(160deg, #f7d3d8, #ecb0b8)',
+    image: '/images/iphone/iphone-17e_more.jpg',
     moreHref: '/iphone/17e',
     buyHref: '/buy?iphone=17e',
   },
@@ -51,7 +52,7 @@ const MODELS: Model[] = [
     name: 'iPhone 16',
     description: 'Неймовірна продуктивність. Надійний дизайн.',
     colors: ['#5b6ee8', '#8fcf9a', '#f2b8c6', '#f2f2f2', '#2c2c2e'],
-    tint: 'linear-gradient(160deg, #6b7fe0, #4a5bc7)',
+    image: '/images/iphone/iphone-16_more.jpg',
     moreHref: '/iphone/16',
     buyHref: '/buy?iphone=16',
   },
@@ -102,7 +103,13 @@ export default function Lineup() {
         {MODELS.map(model => (
           <li key={model.name} className={s.card}>
             <div className={s.photoWrap}>
-              <div className={s.photo} style={{ background: model.tint }} aria-hidden="true" />
+              <Image
+                src={model.image}
+                alt={model.name}
+                width={680}
+                height={680}
+                className={s.photo}
+              />
             </div>
 
             <div className={s.swatches}>
