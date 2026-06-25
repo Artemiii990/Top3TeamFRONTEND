@@ -33,17 +33,23 @@
   text-decoration: none;
 }
 
-/* Placeholder for a future product photo — swap this span for an <img> later */
-.imagePlaceholder {
+/* Real product photo wrapper — replaces the old gradient placeholder */
+.imageWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 70px;
   height: 140px;
-  border-radius: 14px;
-  background: linear-gradient(180deg, var(--ink-titanium), var(--paper));
-  border: 1px solid var(--rule);
   transition: transform 0.25s var(--ease);
 }
 
-.tileLink:hover .imagePlaceholder {
+.tileImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.tileLink:hover .imageWrap {
   transform: translateY(-2px);
 }
 
@@ -75,7 +81,7 @@
   .tiles {
     gap: 28px 24px;
   }
-  .imagePlaceholder {
+  .imageWrap {
     width: 56px;
     height: 112px;
   }
