@@ -26,7 +26,6 @@
 /* ---------------- MAC ---------------- */
 
 .mac {
-
   background: 
     /*1. Шар для правої сторони: йде зверху-вниз, займає 50% ширини і 100% висоти справа*/
     linear-gradient(to bottom, #d4eaf5 10%, #ebf2f8 60%, #f2f6f9 100%) no-repeat left top / 50% 100%,
@@ -83,7 +82,7 @@
 }
 
 .media img {
-  width: 100%; /* Дозволяє картинці адаптуватися по ширині блоку */
+  width: 100%; /* Дозволяє картинці адаптуватися по ширині блок */
   height: auto; /* Захищає від пропорційного стискання */
   object-fit: contain;
   vertical-align: bottom;
@@ -102,8 +101,6 @@
 
   /* scale(1.15) збільшує, а translateY(-20px) акуратно піднімає картинку вгору на 20 пікселів */
   transform: scale(1.19) translateY(-50px);
-
-  /*transform: scale(1.15); /* Збільшуємо масштаб на 15% */
   transform-origin: bottom center; /* Збільшення йде від нижнього краю, щоб планшет міцно стояв на дні */
 }
 
@@ -231,6 +228,46 @@
   transform: scale(1.02); 
 }
 
+/* --- ТОЧКОВІ ЗМІНИ ДЛЯ КАРТКИ (AirPods Max 2) --- */
+
+/* Змінюємо внутрішні відступи тільки у першій картці сітки */
+.grid .card:first-of-type {
+  padding: 0 0 56px 0; /* Трохи зменшили відступ, щоб збалансувати загальний вигляд */
+  justify-content: flex-start; 
+  background: #f5f5f7; 
+}
+
+/* Переносимо текст AirPods Max вниз */
+.grid .card:first-of-type .cardText {
+  order: 2; 
+  margin-top: auto; 
+  padding: 0 40px; 
+}
+
+/* Переносимо фото AirPods Max наверх */
+.grid .card:first-of-type .cardMedia {
+  order: 1; 
+  margin-top: 0;
+  margin-bottom: 20px; 
+  align-items: flex-start; 
+}
+
+/* Застосовуємо режим змішування кольорів для видалення білого фону */
+.grid .card:first-of-type .cardMedia img {
+  max-height: 360px;
+  width: auto;
+  object-fit: contain;
+  
+  /* прибирає білий фон навколо навушників */
+  mix-blend-mode: multiply; 
+  
+  /* Трохи збільшуємо масштаб, а позицію (translateY) робимо нульовою, 
+     оскільки білих країв більше не видно і картинку не треба ховати вгору */
+  transform: scale(1.1) translateY(0); 
+  transform-origin: top center; 
+}
+
+
 /* ---------------- ANIMATION ---------------- */
 
 @keyframes fadeUp {
@@ -278,6 +315,16 @@
 
   .cardMedia img {
     max-height: 260px;
+  }
+  
+  /* Адаптивність для першої картки на мобільних */
+  .grid .card:first-of-type {
+    padding: 0 0 48px 0;
+  }
+  
+  .grid .card:first-of-type .cardMedia img {
+    max-height: 240px;
+    transform: scale(1.05) translateY(-5px);
   }
 }
 
