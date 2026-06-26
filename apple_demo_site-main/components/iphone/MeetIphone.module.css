@@ -42,17 +42,24 @@
   width: 296px;
   height: 480px;
   border-radius: 18px;
-  background-size: cover;
-  background-position: center;
   scroll-snap-align: start;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   padding: 28px;
+  isolation: isolate; /* keeps z-index scoped to this card */
+}
+
+/* Real background photo — sits behind cardTop/plusButton via z-index */
+.cardImage {
+  object-fit: cover;
+  z-index: -1;
 }
 
 .cardTop {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -88,6 +95,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  z-index: 1;
   transition: background 0.2s var(--ease), transform 0.2s var(--ease);
 }
 .plusButton svg {
@@ -250,10 +258,17 @@
   font-weight: 600;
 }
 
-.modalPhoto {
+.modalPhotoWrap {
   width: 100%;
   height: 240px;
   border-radius: 14px;
+  overflow: hidden;
+}
+
+.modalPhoto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* ============================================================
