@@ -106,7 +106,7 @@ export default function FamilyTies() {
           })}
         </div>
 
-        <div className={s.imageArea}>
+        <div className={`${s.imageArea} ${s[activeRow.id] || ''}`}>
           <Image
             key={activeRow.id}
             src={activeRow.image}
