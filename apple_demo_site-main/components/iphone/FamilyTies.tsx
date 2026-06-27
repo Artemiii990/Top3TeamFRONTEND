@@ -39,10 +39,21 @@ export default function FamilyTies() {
   const [openId, setOpenId] = useState<string>(ROWS[0].id);
 
   const activeRow = ROWS.find(r => r.id === openId) ?? ROWS[0];
+  
+  const handleNext = () => {
+    const currentIndex = ROWS.findIndex(row => row.id === openId);
+    const nextIndex = (currentIndex + 1) % ROWS.length;
+
+    setOpenId('');
+
+    setTimeout(() => {
+      setOpenId(ROWS[nextIndex].id);
+    }, 300);
+  };
 
   return (
     <section className={s.section}>
-      <h2 className={s.heading}>Родинні зв&rsquo;язки</h2>
+      <h2 className={s.heading}>Родинні зв'язки</h2>
 
       <div className={s.panel}>
         <div className={s.accordion}>
@@ -54,7 +65,8 @@ export default function FamilyTies() {
                   type="button"
                   className={s.itemHeader}
                   aria-expanded={isOpen}
-                  onClick={() => setOpenId(row.id)}
+                  // onClick={() => setOpenId(row.id)}
+                  onClick={isOpen ? handleNext : () => setOpenId(row.id)}
                 >
                   <span className={s.itemTitle}>{row.title}</span>
                   <svg
