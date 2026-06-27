@@ -23,7 +23,7 @@ const CARDS: Card[] = [
     title: 'AirTag',
     description:
       'Прикріпіть один AirTag до своїх ключів, а інший покладіть у рюкзак. Якщо загубили їх, просто скористайтеся Локатором.',
-    image: '/images/iphone/airtag-1.jpg',
+    image: '/images/iphone/airtag-1.png',
     alt: 'AirTag',
   },
 ];
@@ -37,20 +37,22 @@ export default function Essentials() {
 
       <ul className={s.track}>
         {CARDS.map(card => (
-          <li key={card.id} className={s.card}>
+          <li key={card.id} className={`${s.card} ${s[card.id] || ''}`}>
             <h3 className={s.cardTitle}>{card.title}</h3>
 
             <p className={s.cardDescription}>
               {card.description}
             </p>
 
-            <Image
-              src={card.image}
-              alt={card.alt}
-              width={500}
-              height={500}
-              className={s.image}
-            />
+            <div className={s.imageWrapper}>
+              <Image
+                src={card.image}
+                alt={card.alt}
+                width={500}
+                height={500}
+                className={s.image}
+              />
+            </div>
           </li>
         ))}
       </ul>
