@@ -42,7 +42,7 @@
 /* ---------------- iPad ---------------- */
 
 .ipad {
-  background: linear-gradient(to bottom, #addcee 30%, #b3deef 50%, #c1e3ef, #cbe7f2, #d9ecf3 100%);
+  background: linear-gradient(to bottom, #addcee 50%, #bbe0f0, #c5e5f2, #d9ecf2 100%);
   color: #1d1d1f;
   padding-top: 60px;
 }
@@ -122,7 +122,7 @@
 /*Індивідуальні ліміти та збільшення для головного банера iPhone*/
 .hero .media img {
   max-width: 100%; /*980px -> 100%*/
-  max-height: 480px; /* Збільшуємо ліміт висоти з 420px до 480px */
+  max-height: 395px; /* Змінюємо ліміт висоти з 420px до 395px */
 
   object-fit: contain;
   
@@ -135,20 +135,20 @@
 
 .ipad .media img {
   max-width: 100%; /* Дозволяємо картинці зайняти більше простору по ширині */
-  max-height: 666px; /* підняти висоту */
+  max-height: 515px; /* підняти висоту */
   object-fit: contain; /* Залишаємо contain, щоб планшет не деформувався */
 
   /* scale(1.15) збільшує, а translateY(-20px) акуратно піднімає картинку вгору на 20 пікселів */
-  transform: scale(1.19) translateY(-50px);
+  transform: scale(1.16) translateY(-70px);
   transform-origin: bottom center; /* Збільшення йде від нижнього краю, щоб планшет міцно стояв на дні */
 }
 
 .mac .media img {
   max-width: 100%; 
-  max-height: 610px; 
+  max-height: 540px; 
   object-fit: contain;
   /* scale(1.18) робить макбук більшим, а translateY(-25px) піднімає його над нижньою межею */
-  transform: scale(1.28) translateY(-100px);
+  transform: scale(1.18) translateY(-135px);
   transform-origin: bottom center;
 }
 
