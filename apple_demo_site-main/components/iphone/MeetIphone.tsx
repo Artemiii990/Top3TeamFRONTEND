@@ -254,13 +254,13 @@ export default function MeetIphone() {
       </div>
 
       <ul className={s.track} ref={trackRef} onScroll={updateEdges}>
-        {CARDS.map(card => (
-          <li key={card.id} className={s.card}>
+        {CARDS.map((card, index) => (
+          <li key={card.id} className={`${s.card} ${s[`card_${card.id}`]}`}>
             <Image
               src={card.image}
               alt={card.eyebrow}
               fill
-              className={s.cardImage}
+              className={`${s.cardImage} ${index === 0 || index === 4 ? s.cardImagePositionDown : ''}`}
               sizes="296px"
             />
 

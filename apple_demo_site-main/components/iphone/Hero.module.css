@@ -85,7 +85,7 @@
 .tiles .tile:last-child .tileImage {
   position: absolute;
   bottom: 0; 
-  left: 60%;
+  left: 50%;
   transform: translateX(-50%);
 
   width: auto;
