@@ -17,6 +17,10 @@
 }
 .notes p {
   margin-bottom: 8px;
+  /* scroll-margin-top: 120px; */
+}
+#footnote-13 {
+  scroll-margin-top: 120px;
 }
 .notes a {
   text-decoration: underline;

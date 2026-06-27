@@ -1,13 +1,14 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import s from './FamilyTies.module.css';
 
 type Row = {
   id: string;
   title: string;
   description: string;
-  tint: string; // placeholder gradient standing in for the real product photo
+  image: string; // path under /public
 };
 
 const ROWS: Row[] = [
@@ -16,21 +17,21 @@ const ROWS: Row[] = [
     title: 'iPhone і Mac',
     description:
       'Ви можете копіювати зображення, відео або текст із iPhone безпосередньо на Mac, а потім вставляти їх в інший додаток на сусідньому Mac, паралельно відповідаючи на дзвінки або повідомлення з iPhone. А завдяки iCloud ви можете отримати доступ до улюблених файлів на обох пристроях.',
-    tint: 'linear-gradient(155deg, #d7dbe2, #aab1bd 60%, #6f7686)',
+    image: '/images/iphone/iphone-mac.jpg',
   },
   {
     id: 'watch',
     title: 'iPhone та Apple Watch',
     description:
-      'Загубили свій iPhone? Apple Watch може показати приблизну відстань і напрямок, де його шукати. Коли ви відповідаєте на дзвінок на Apple Watch, просто торкніться iPhone, щоб продовжити розмову на ньому.',
-    tint: 'linear-gradient(155deg, #2c2c2e, #0c0c0d 70%)',
+      'Загубили свій iPhone? Останні моделі Apple Watch можуть показувати приблизну відстань і напрямок, де його шукати. Щоб налаштувати групове фото на iPhone, приєднайтеся до групи та використовуйте Apple Watch як видошукач, щоб зробити знімок. Коли ви відповідаєте на дзвінок на Apple Watch, просто торкніться iPhone, щоб продовжити розмову на ньому.',
+    image: '/images/iphone/iphone-watch.jpeg',
   },
   {
     id: 'airpods',
     title: 'iPhone та AirPods',
     description:
       'Налаштуйте AirPods на iPhone одним дотиком. Вам сподобається технологія адаптивного аудіо, яка автоматично налаштовує шумоконтроль для найкращої якості прослуховування в будь-яких умовах і під час різних взаємодій протягом дня.',
-    tint: 'linear-gradient(155deg, #f1f1f3, #d8d8dc 60%, #b9bac0)',
+    image: '/images/iphone/iphone-airpods.jpg',
   },
 ];
 
@@ -70,15 +71,38 @@ export default function FamilyTies() {
                   style={{ maxHeight: isOpen ? '320px' : '0px' }}
                   aria-hidden={!isOpen}
                 >
-                  <p className={s.itemDescription}>{row.description}</p>
+                  {/* <p className={s.itemDescription}>{row.description}</p> */}
+                  <p className={s.itemDescription}>
+                    {row.id === 'watch' ? (
+                      <>
+                        Загубили свій iPhone? Останні моделі Apple Watch можуть показувати вам приблизну
+                        відстань і напрямок, де його шукати
+                        <a href="#footnote-13" className={s.footnoteLink}>
+                          <sup>13</sup>
+                        </a>.{' '}
+                        Щоб налаштувати групове фото на iPhone, приєднайтеся до групи та використовуйте Apple Watch як видошукач, щоб зробити знімок.
+                        Коли ви відповідаєте на дзвінок на Apple Watch, просто торкніться iPhone,
+                        щоб продовжити розмову на ньому.
+                      </>
+                    ) : (
+                      row.description
+                    )}
+                    </p>
                 </div>
               </div>
             );
           })}
         </div>
 
-        <div className={s.imageArea} aria-hidden="true">
-          <div className={s.image} style={{ background: activeRow.tint }} />
+        <div className={s.imageArea}>
+          <Image
+            key={activeRow.id}
+            src={activeRow.image}
+            alt={activeRow.title}
+            width={920}
+            height={840}
+            className={s.image}
+          />
         </div>
       </div>
     </section>

@@ -84,7 +84,7 @@
 }
 
 /* ============================================================
-   IMAGE AREA — placeholder gradient block, swapped per open row.
+   IMAGE AREA — real photo, swapped per open accordion row.
    ============================================================ */
 .imageArea {
   flex: 1 1 auto;
@@ -92,6 +92,7 @@
   align-items: center;
   justify-content: center;
   height: 420px;
+  overflow: hidden;
 }
 
 .image {
@@ -99,7 +100,22 @@
   height: 100%;
   max-width: 460px;
   border-radius: 20px;
-  transition: background 0.4s var(--ease);
+  object-fit: cover;
+}
+
+.footnoteLink {
+  color: inherit;
+  text-decoration: none;
+  margin-left: 2px;
+}
+
+.footnoteLink:hover {
+  text-decoration: underline;
+}
+
+.footnoteLink sup {
+  font-size: 0.72em;
+  vertical-align: super;
 }
 
 /* ============================================================
