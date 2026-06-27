@@ -81,6 +81,13 @@
   display: block;
 }
 
+.subtext {
+  margin-top: 14px;
+  font-size: 13px;
+  line-height: 1.35;
+  color: rgba(255, 255, 255, 0.72);
+}
+
 .plusButton {
   position: absolute;
   bottom: 20px;
