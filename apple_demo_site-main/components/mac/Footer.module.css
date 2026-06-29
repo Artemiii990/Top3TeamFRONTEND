@@ -70,9 +70,9 @@
   text-decoration: none;
   transition: color 0.2s var(--ease);
 }
-.crumbActive:hover {
+/* .crumbActive:hover {
   color: var(--text-primary);
-}
+} */
 
 .links {
   display: flex;

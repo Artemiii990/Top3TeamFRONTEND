@@ -88,7 +88,7 @@ export default function Footer() {
           </svg>
         </a>
         <span className={s.separator} aria-hidden="true">&rsaquo;</span>
-        <a href="/iphone" className={s.crumbActive}>iPhone</a>
+        <a className={s.crumbActive}>iPhone</a>
       </div>
 
       <div className={s.links}>

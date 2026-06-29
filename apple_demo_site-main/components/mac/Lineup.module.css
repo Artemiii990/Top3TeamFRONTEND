@@ -1,6 +1,6 @@
 .section {
   background: var(--paper);
-  padding: 80px 0 96px;
+  padding: 80px 0 64px;
 }
 
 .headerRow {
@@ -17,26 +17,30 @@
 }
 
 /* ============================================================
-   FILTER TABS — pill group, single active pill slides visually
-   via background swap (no shared layoutId, keeps this dependency-free).
+   TAB TRACK — one grey pill-shaped background; the active tab
+   renders as a solid black pill INSIDE that track, not as a
+   separately floating button. Matches the segmented-control look
+   of the original (single rounded-rect housing all four options).
    ============================================================ */
-.tabRow {
+.tabTrack {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  padding: 0 80px;
-  margin-bottom: 48px;
+  background: var(--ink-titanium);
+  border-radius: 999px;
+  padding: 6px;
+  margin: 0 80px 40px;
 }
 
 .tab {
   appearance: none;
   border: none;
-  background: var(--ink-titanium);
+  background: transparent;
   color: var(--text-secondary);
   font-size: 15px;
   font-weight: 500;
   letter-spacing: -0.01em;
-  padding: 10px 20px;
+  padding: 10px 22px;
   border-radius: 999px;
   cursor: pointer;
   transition: background 0.25s var(--ease), color 0.25s var(--ease);
@@ -56,45 +60,42 @@
 }
 
 /* ============================================================
-   GRID — responsive card grid, horizontal scroll-track since Mac's 
-   lineup section is a static grid that reflows when the filter changes 
-   (no native scroll needed).
+   TRACK — horizontal scroll, same pattern as the iPhone Lineup
+   (native scroll + snap, arrows call scrollBy() via ref).
    ============================================================ */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+.track {
+  display: flex;
   gap: 24px;
   list-style: none;
   padding: 0 80px;
+  overflow-x: auto;
+  overflow-y: visible;
+  scroll-snap-type: x proximity;
+  scroll-padding-left: 80px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  touch-action: pan-x;
+}
+.track::-webkit-scrollbar {
+  display: none;
 }
 
 .card {
+  flex: 0 0 auto;
+  width: 280px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: var(--ink-titanium);
-  border-radius: 18px;
-  padding: 32px 24px 28px;
-  animation: cardIn 0.35s var(--ease);
-}
-
-@keyframes cardIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  scroll-snap-align: start;
 }
 
 .photoWrap {
   width: 100%;
   aspect-ratio: 1 / 1;
-  border-radius: 14px;
+  border-radius: 18px;
   overflow: hidden;
   margin-bottom: 16px;
+  background: var(--ink-titanium);
 }
 
 .photo {
@@ -106,17 +107,34 @@
   transform: scale(1.035);
 }
 
+/* ============================================================
+   SWATCHES — small color dots under the photo. Most are flat
+   color; a couple of products (iMac) show a two-tone dot, split
+   diagonally light-on-top / deep-on-bottom, via conic-gradient.
+   Products with no color options (Mac mini, Mac Studio, displays)
+   render no swatch row at all.
+   ============================================================ */
 .swatches {
   display: flex;
   gap: 6px;
   margin-bottom: 18px;
+  min-height: 12px;
 }
 .swatch {
-  width: 10px;
-  height: 10px;
+  width: 11px;
+  height: 11px;
   border-radius: 50%;
   background: var(--swatch-color);
   border: 1px solid var(--rule);
+}
+.swatchSplit {
+  background: conic-gradient(
+    from 225deg,
+    var(--swatch-color-a) 0deg,
+    var(--swatch-color-a) 180deg,
+    var(--swatch-color-b) 180deg,
+    var(--swatch-color-b) 360deg
+  );
 }
 
 .tag {
@@ -179,36 +197,66 @@
   text-decoration: underline;
 }
 
+/* ARROWS  */
+.arrows {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 24px 80px 0;
+}
+
+.arrow {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ink-titanium);
+  color: var(--text-primary);
+  transition: background 0.2s var(--ease), opacity 0.2s var(--ease);
+}
+.arrow svg {
+  width: 14px;
+  height: 14px;
+}
+.arrow:hover:not(:disabled) {
+  background: var(--ink-graphite);
+}
+.arrow:disabled {
+  opacity: 0.35;
+  cursor: default;
+  color: var(--text-tertiary);
+}
+
 /* ============================================================
    MOBILE
    ============================================================ */
-@media (max-width: 1100px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
 @media (max-width: 900px) {
   .section {
-    padding: 56px 0 64px;
+    padding: 56px 0 48px;
   }
   .headerRow {
     padding: 0 24px;
     margin-bottom: 24px;
   }
-  .tabRow {
-    padding: 0 24px;
-    margin-bottom: 32px;
+  .tabTrack {
+    margin: 0 24px 32px;
+    max-width: calc(100% - 48px);
     overflow-x: auto;
-    max-width: 100%;
     scrollbar-width: none;
   }
-  .tabRow::-webkit-scrollbar {
+  .tabTrack::-webkit-scrollbar {
     display: none;
   }
-  .grid {
-    grid-template-columns: 1fr;
+  .track {
     padding: 0 24px;
     gap: 16px;
+  }
+  .card {
+    width: 220px;
+  }
+  .arrows {
+    display: none;
   }
 }
