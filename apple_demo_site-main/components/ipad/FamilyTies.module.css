@@ -1,0 +1,132 @@
+.section {
+  /* background: var(--ink-black); */
+  background: var(--paper);
+  padding: 64px 80px 96px;
+}
+
+.heading {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(32px, 4vw, 44px);
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: 40px;
+}
+
+/* ============================================================
+   PANEL — one shared light-gray card holding both the accordion
+   and the (single, swapping) image area side by side.
+   ============================================================ */
+.panel {
+  /* background: var(--paper); */
+  background: #fff;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  padding: 56px;
+  min-height: 480px;
+}
+
+.accordion {
+  flex: 0 0 420px;
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  border-bottom: 1px solid var(--rule);
+}
+.item:first-child {
+  border-top: 1px solid var(--rule);
+}
+
+.itemHeader {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 0;
+  text-align: left;
+  cursor: pointer;
+}
+
+.itemTitle {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+
+.chevron {
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+  color: var(--text-tertiary);
+  transition: transform 0.3s var(--ease);
+}
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.itemBody {
+  overflow: hidden;
+  transition: max-height 0.35s var(--ease);
+}
+
+.itemDescription {
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  padding-bottom: 28px;
+  max-width: 380px;
+}
+
+/* ============================================================
+   IMAGE AREA — placeholder gradient block, swapped per open row.
+   ============================================================ */
+.imageArea {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 420px;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  max-width: 460px;
+  border-radius: 20px;
+  transition: background 0.4s var(--ease);
+}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+@media (max-width: 900px) {
+  .section {
+    padding: 48px 24px 64px;
+  }
+  .panel {
+    flex-direction: column;
+    padding: 32px 24px;
+    gap: 32px;
+    min-height: 0;
+  }
+  .accordion {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+  .itemTitle {
+    font-size: 18px;
+  }
+  .imageArea {
+    width: 100%;
+    height: 260px;
+  }
+  .image {
+    max-width: 100%;
+  }
+}
