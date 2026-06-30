@@ -1,0 +1,222 @@
+/* ============================================================
+   WRAPPER
+   ============================================================ */
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  padding: 32px 0 80px;
+
+  background: var(--paper);
+}
+
+.section {
+  background: var(--paper);
+
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0 24px;
+}
+
+/* ============================================================
+   CARD
+   ============================================================ */
+.card {
+  position: relative;
+  width: 100%;
+  max-width: 1600px;
+  min-height: 780px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+  border-radius: 34px;
+  background: #f5f5f7;
+  padding: 56px 24px 64px;
+  isolation: isolate;
+}
+
+/* ============================================================
+   MEDIA
+   ============================================================ */
+.media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+.mediaGradient {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-size: 200% 200%;
+  animation: drift 14s ease-in-out infinite;
+  transform: scale(1.08);
+}
+
+@keyframes drift {
+  0%, 100% {
+    background-position: 0% 0%;
+  }
+
+  50% {
+    background-position: 100% 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .mediaGradient {
+    animation:none;
+  }
+
+}
+
+/* ============================================================
+   CONTENT
+   ============================================================ */
+.content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 18px;
+}
+
+.eyebrowRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.tag {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.modelName {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(40px, 6vw, 64px);
+  letter-spacing: -.02em;
+  line-height: 1.02;
+  color: var(--on-media, var(--text-primary));
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.tagline {
+  font-size: 21px;
+  line-height: 1.35;
+  color: var(--on-media,var(--text-primary));
+  text-align: center;
+  margin-bottom: 28px;
+  max-width: 460px;
+}
+
+.ctaRow{
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.btnPrimary{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 24px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition:
+      background .25s var(--ease),
+      transform .25s var(--ease),
+      box-shadow .25s var(--ease);
+}
+
+.btnPrimary:hover{
+  background: var(--accent-glow);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(0,0,0,.18);
+}
+
+/* ============================================================
+   PLAY / PAUSE
+   ============================================================ */
+.toggleButton{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 5;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,.88);
+  color: #1d1d1f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  transition:
+      transform .25s,
+      background .25s;
+}
+
+.toggleButton:hover{
+  background: #fff;
+  transform: scale(1.06);
+}
+
+.toggleButton svg{
+  width: 14px;
+  height: 14px;
+}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+@media (max-width: 1200px){
+  .card{
+    min-height: 700px;
+  }
+}
+
+@media (max-width: 900px){
+  .wrapper{
+    gap: 24px;
+    padding: 20px 0 48px;
+  }
+  .section{
+    padding: 0 16px;
+  }
+  .card{
+    min-height: 620px;
+    border-radius: 26px;
+    padding: 40px 20px 48px;
+  }
+  .modelName{
+    font-size: clamp(34px,9vw,52px);
+  }
+  .tagline{
+    font-size: 18px;
+  }
+  .ctaRow{
+    margin-bottom: 36px;
+  }
+}

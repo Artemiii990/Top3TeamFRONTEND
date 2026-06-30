@@ -1,0 +1,172 @@
+.section {
+  background: var(--paper);
+  padding: 80px 0 96px;
+}
+
+.heading {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(32px, 4vw, 44px);
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+/* ============================================================
+   GRID — 4 model columns. Horizontally scrollable on narrow
+   viewports since the table is information-dense and shouldn't
+   wrap awkwardly.
+   ============================================================ */
+.scrollArea {
+  overflow-x: auto;
+  padding: 0 24px;
+  scrollbar-width: thin;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(220px, 1fr));
+  gap: 0;
+  min-width: 920px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--rule);
+  padding: 0 24px;
+}
+.col:first-child {
+  padding-left: 8px;
+}
+.col:last-child {
+  border-right: none;
+  padding-right: 8px;
+}
+
+/* -------- header block: tag, name, description, CTA -------- */
+.colHeader {
+  text-align: center;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 28px;
+}
+
+.colTag {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 4px;
+  height: 16px;
+}
+
+.colName {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.colDescription {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  min-height: 84px;
+}
+
+.colCta {
+  font-size: 14px;
+  color: var(--accent);
+}
+.colCta:hover {
+  text-decoration: underline;
+}
+
+/* -------- feature rows -------- */
+.row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--rule);
+  min-height: 64px;
+  justify-content: center;
+}
+.row:last-of-type {
+  border-bottom: none;
+}
+
+.rowLabel {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.check {
+  width: 18px;
+  height: 18px;
+  color: var(--accent);
+}
+
+.dash {
+  font-size: 18px;
+  color: var(--text-tertiary);
+  line-height: 1;
+}
+
+.rowDescription {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--text-secondary);
+}
+
+/* -------- battery / spec callouts -------- */
+.specValue {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.specDescription {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--text-secondary);
+}
+
+/* -------- footer link -------- */
+.footerLinkRow {
+  text-align: center;
+  margin-top: 40px;
+}
+.footerLink {
+  font-size: 16px;
+  color: var(--accent);
+}
+.footerLink:hover {
+  text-decoration: underline;
+}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+@media (max-width: 900px) {
+  .section {
+    padding: 56px 0 64px;
+  }
+  .heading {
+    margin-bottom: 32px;
+    padding: 0 24px;
+  }
+  .grid {
+    min-width: 760px;
+  }
+}

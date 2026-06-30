@@ -1,0 +1,86 @@
+.hero {
+  /* background: var(--paper); */
+  padding: 36px 0 0;
+}
+
+.headline {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(40px, 6vw, 64px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.tiles {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  gap: 48px;
+  padding: 0 24px;
+}
+
+.tile {
+  flex: 0 0 auto;
+}
+
+.tileLink {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.tileImg {
+  width: auto;
+  height: 64px;
+  object-fit: contain;
+  transition: transform 0.25s var(--ease);
+
+  margin-bottom: 8px;
+  /* прибирає білий фон навколо навушників */
+  mix-blend-mode: multiply; 
+  /* підсилюємо яскравість та контраст, щоб самі навушники знову стали білими, а не сірими */
+  filter: brightness(1.0) contrast(1.05); 
+}
+
+.tileLink:hover .tileImg {
+  transform: translateY(-2px);
+}
+
+.tileLabel {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+.tileTag {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  margin-top: -4px;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    padding: 28px 0 0;
+  }
+  .headline {
+    margin-bottom: 20px;
+  }
+  .tiles {
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .tileImg {
+    height: 48px;
+  }
+  .tileLabel {
+    font-size: 12px;
+  }
+}
