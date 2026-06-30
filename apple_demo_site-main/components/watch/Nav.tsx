@@ -14,7 +14,7 @@ const LINKS = [
   { label: 'Watch', href: '/watch' },
   { label: 'AirPods', href: '/airpods' },
   { label: 'TV', href: '/tv' },
-  { label: 'Сервіси', href: '/services' },
+  { label: 'Сервіси', href: 'https://www.apple.com/services/' },
   { label: 'Підтримка', href: '/support' },
   { label: 'Де купити', href: '/buy' },
 ];

@@ -1,0 +1,118 @@
+import s from './Footer.module.css';
+
+const COLUMNS: { heading: string; links: string[] }[] = [
+  {
+    heading: 'Продукти',
+    links: ['Mac', 'iPad', 'iPhone', 'Watch', 'AirPods', 'TV', 'AirTag'],
+  },
+  {
+    heading: 'Обліковий запис',
+    links: ['Керування обліковим записом Apple', 'iCloud.com']
+  },
+  {
+    heading: 'Сервіси',
+    links: ['Apple One', 'Apple TV', 'Apple Music', 'Apple Arcade', 'Apple Podcasts', 'Apple Books', 'App Store'],
+  },
+  {
+    heading: 'Для бізнесу',
+    links: ['Apple і бізнес']
+  },
+  {
+    heading: 'Цінності Apple',
+    links: ['Доступність', 'Довкілля', 'Конфіденційність']
+  },
+  {
+    heading: 'Про компанію Apple',
+    links: ['Вакансії', 'Інвесторам', 'Етика й відповідність'],
+  },
+];
+
+export default function Footer() {
+  return (
+    <footer className={s.footer}>
+      {/* примітки зверху футера */}
+      <div className={s.notes}>
+        <p>Функції можуть змінюватися. Деякі функції, додатки й сервіси доступні не всіма мовами та не в усіх регіонах. </p>
+      </div>
+
+      {/* FOOTER-BREADCRUMBS */}
+      <div className={s.breadcrumbs}>
+        <a href="/" className={s.logo} aria-label="Apple">
+          <svg
+            viewBox="0 0 14 44"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path d="M13.0729 17.6825A3.61 3.61 0 0 0 11.3 20.7235c.0331 2.5022 2.2092 3.4338 2.2999 3.4641-.0376.107-.3641 1.1777-1.1656 2.2898-.7008.9683-1.4275 1.9376-2.5755 1.9579-1.1389.0224-1.5023-.6705-2.7935-.6705-1.2902 0-1.6868.6481-2.7644.6929-1.1117.0418-1.9477-1.0454-2.6557-2.0102C.5067 24.5096-.6045 20.8911.7986 18.4452c.7038-1.2231 1.9619-1.9954 3.3266-2.0177 1.0884-.0223 2.1209.7345 2.7905.7345.6695 0 1.9229-.9089 3.2418-.7763.5527.0227 2.1015.2237 3.0992 1.6856-.0816.0508-1.8531 1.0848-1.838 3.2113" />
+            <path
+              transform="translate(0 1.8)"
+              d="M9.9301 13.4151c.5921-.7166 1.0014-1.7184.8856-2.7167-.8536.0359-1.9009.5703-2.5187 1.2814-.5491.6324-1.0455 1.6539-.9148 2.6308.9536.0703 1.9268-.4707 2.5479-1.1955"
+            />
+          </svg>
+        </a>
+        <span className={s.separator} aria-hidden="true">&rsaquo;</span>
+        {/* <a href="/mac" className={s.crumbActive}>Mac</a> */}
+        <a className={s.crumbActive}>TV</a>
+      </div>
+
+      <div className={s.links}>
+
+        {/* Column 1 */}
+        <div className={s.column}>
+          <div className={s.sectionBlock}>
+            <h6>{COLUMNS[0].heading}</h6>
+            {COLUMNS[0].links.map(label => <a key={label} href="#">{label}</a>)}
+          </div>
+        </div>
+
+        {/* Column 2 */}
+        <div className={s.column}>
+          <div className={s.sectionBlock}>
+            <h6>{COLUMNS[1].heading}</h6>
+            {COLUMNS[1].links.map(label => <a key={label} href="#">{label}</a>)}
+          </div>
+          <div className={s.sectionBlock}>
+            <h6>{COLUMNS[2].heading}</h6>
+            {COLUMNS[2].links.map(label => <a key={label} href="#">{label}</a>)}
+          </div>
+        </div>
+
+        {/* Column 3 */}
+        <div className={s.column}>
+          <div className={s.sectionBlock}>
+            <h6>{COLUMNS[3].heading}</h6>
+            {COLUMNS[3].links.map(label => <a key={label} href="#">{label}</a>)}
+          </div>
+        </div>
+
+        {/* Column 4 */}
+        <div className={s.column}>
+          <div className={s.sectionBlock}>
+            <h6>{COLUMNS[4].heading}</h6>
+            {COLUMNS[4].links.map(label => <a key={label} href="#">{label}</a>)}
+          </div>
+          <div className={s.sectionBlock}>
+            <h6>{COLUMNS[5].heading}</h6>
+            {COLUMNS[5].links.map(label => <a key={label} href="#">{label}</a>)}
+          </div>
+        </div>
+      </div>
+
+      <div className={s.partnerText}>
+        <a href='#'>Знайти поруч</a> магазин офіційного партнера.
+      </div>
+        
+      <div className={s.copyrightBlock}>
+        <div className={s.copyrightText}>
+          © 2026 Apple Inc. Усі права застережено.
+        </div>
+        <div className={s.copyrightLinks}>
+          <a href='#'>Політика конфіденційності</a>
+          <a href='#'>Юридична інформація</a>
+          <a href='#'>Карта сайту</a>
+          <a href='#' className={s.langLink}>Україна</a>
+        </div>
+      </div>
+    </footer>
+  );
+}

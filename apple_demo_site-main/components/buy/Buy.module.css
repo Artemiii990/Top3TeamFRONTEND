@@ -9,7 +9,8 @@
   gap: 24px;
   padding: 48px 80px 40px;
   /* Real apple.com/ua/buy uses plain white here, distinct from the
-     light-gray --paper used for card/section surfaces elsewhere */
+     light-gray --paper used for card/section surfaces elsewhere in
+     this codebase. Falls back to --paper if --surface isn't defined. */
   background: var(--surface, #fff);
 }
 
@@ -99,7 +100,7 @@
   color: #151515;
 }
 .filterBtnActive:hover {
-  color: skyblue;
+  color: gray;
 }
 
 /* ============================================================
@@ -111,7 +112,7 @@
 }
 
 .sectionInner {
-  padding: 0 80px;
+  padding: 0;
 }
 
 .sectionHeading {
@@ -121,6 +122,7 @@
   letter-spacing: -0.02em;
   color: var(--text-primary);
   margin-bottom: 8px;
+  padding: 0 80px;
 }
 
 .sectionSubheading {
@@ -129,30 +131,43 @@
   color: var(--text-secondary);
   max-width: 720px;
   margin-bottom: 56px;
+  padding: 0 80px;
 }
 
 /* ============================================================
-   PRODUCT GRID — Apple lays this out as a horizontal row that
-   wraps responsively; cards share the row, with the arrow pair
-   anchored bottom-right of the row.
+   PRODUCT TRACK — native horizontal scroll + snap: fixed-width 
+   cards in a single row that overflows and scrolls via the arrow pair
    ============================================================ */
 .grid {
-  display: flex; /*grid -> flex*/
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 32px 24px;
+  display: flex;
+  gap: 32px;
   list-style: none;
+  padding: 0 80px;
+  overflow-x: auto;
+  overflow-y: visible;
+  scroll-snap-type: x proximity;
+  scroll-padding-left: 80px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  touch-action: pan-x;
+}
+.grid::-webkit-scrollbar {
+  display: none;
 }
 
 .card {
+  flex: 0 0 auto;
+  width: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  scroll-snap-align: start;
 }
 
 .photoWrap {
   width: 100%;
-  max-width: 240px;
+  max-width: 200px;
   aspect-ratio: 1 / 1;
   display: flex;
   align-items: center;
@@ -227,7 +242,7 @@
   display: flex;
   justify-content: flex-end;
   gap: 8px;
-  padding: 24px 0 56px;
+  padding: 24px 80px 56px;
 }
 
 .arrow {
@@ -332,15 +347,20 @@
   .section {
     padding: 40px 0 0;
   }
-  .sectionInner {
+  .sectionHeading,
+  .sectionSubheading {
     padding: 0 24px;
   }
   .sectionSubheading {
     margin-bottom: 36px;
   }
   .grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 32px 16px;
+    padding: 0 24px;
+    gap: 20px;
+    scroll-padding-left: 24px;
+  }
+  .card {
+    width: 150px;
   }
   .modelName {
     font-size: 18px;
@@ -349,16 +369,10 @@
     font-size: 14px;
   }
   .arrows {
-    display: none;
+    display: none; /* rely on native touch scroll on mobile */
   }
 
   .locator {
     padding: 48px 24px 56px;
-  }
-}
-
-@media (max-width: 520px) {
-  .grid {
-    grid-template-columns: 1fr 1fr;
   }
 }
