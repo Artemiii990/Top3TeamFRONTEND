@@ -1,0 +1,158 @@
+.section {
+  background: var(--paper);
+  padding: 0 80px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  /* max-width: 980px; */
+  margin: 0 auto;
+}
+
+/* ============================================================
+   APP PROMO CARD
+   ============================================================ */
+.appCard {
+  /* background: var(--ink-titanium); */
+  background: #fff;
+  border-radius: 22px;
+  overflow: hidden;
+  
+  max-width: 980px;
+  margin-top: 25px;
+  margin-left: 180px;
+}
+
+.appCardText {
+  padding: 40px 238px 32px;
+  text-align: center;
+}
+
+.cardHeading {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 28px;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.cardBody {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  max-width: 520px;
+  margin-bottom: 20px;
+}
+
+.downloadLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--accent);
+}
+.downloadLink:hover {
+  text-decoration: underline;
+}
+
+.appImageArea {
+  background: linear-gradient(160deg, #cfe2f7, #e9f1fb);
+  padding: 56px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.appIcon {
+  width: 96px;
+  height: 96px;
+  border-radius: 24px;
+  background: radial-gradient(circle at 32% 26%, #6cb6f5, var(--accent) 75%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 16px 32px rgba(0, 113, 227, 0.25);
+}
+
+.appIcon svg {
+  width: 42px;
+  height: 47px;
+  fill: #fff;
+
+  margin-right: 3px;
+}
+
+/* ============================================================
+   WARNING CARD
+   ============================================================ */
+.warningCard {
+  /* background: var(--ink-titanium); */
+  background: #fff;
+  border-radius: 22px;
+  padding: 40px 48px 44px;
+
+  max-width: 980px;
+  margin-top: 25px;
+  margin-left: 180px;
+}
+
+.warningHeading {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.warningBody {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+.warningBody:last-child {
+  margin-bottom: 0;
+}
+
+.warningBody a {
+  color: var(--accent);
+}
+.warningBody a:hover {
+  text-decoration: underline;
+}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+@media (max-width: 900px) {
+  .section {
+    padding: 0 24px 48px;
+    gap: 16px;
+  }
+  .appCardText {
+    padding: 32px 28px 24px;
+  }
+  .cardHeading {
+    font-size: 22px;
+  }
+  .appImageArea {
+    padding: 40px 0;
+  }
+  .appIcon {
+    width: 76px;
+    height: 76px;
+    border-radius: 18px;
+  }
+  .appIcon svg {
+    width: 34px;
+    height: 38px;
+  }
+  .warningCard {
+    padding: 28px 24px 32px;
+  }
+  .warningHeading {
+    font-size: 20px;
+  }
+}
