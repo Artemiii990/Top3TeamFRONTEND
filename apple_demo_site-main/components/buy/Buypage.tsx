@@ -1,6 +1,7 @@
 'use client';
 
 import { JSX, useEffect, useRef, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import s from './Buy.module.css';
 import { CATEGORIES, type Swatch } from './buyData';
 
@@ -56,10 +57,30 @@ function isSplit(c: Swatch): c is { a: string; b: string } {
 }
 
 export default function BuyPage() {
-  const [activeId, setActiveId] = useState(CATEGORIES[0].id); // default: Mac
+  const searchParams = useSearchParams();
+
+  // Deep-link support: /buy?category=tv (or any CATEGORIES id) opens
+  // straight onto that pill instead of always defaulting to Mac.
+  // Falls back to the first category if the param is missing or invalid,
+  // e.g. someone landing on plain /buy.
+  const requestedCategory = searchParams.get('category');
+  const initialCategory =
+    CATEGORIES.find(c => c.id === requestedCategory)?.id ?? CATEGORIES[0].id;
+
+  const [activeId, setActiveId] = useState(initialCategory);
   const trackRef = useRef<HTMLUListElement>(null);
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(true);
+
+  // If the query param changes after mount (e.g. navigating from one
+  // product's "Купити" button to another without a full page reload),
+  // keep the active pill in sync with it.
+  useEffect(() => {
+    const next = CATEGORIES.find(c => c.id === requestedCategory)?.id;
+    if (next && next !== activeId) {
+      setActiveId(next);
+    }
+  }, [requestedCategory]);
 
   const activeCategory = CATEGORIES.find(c => c.id === activeId) ?? CATEGORIES[0];
 
@@ -76,7 +97,6 @@ export default function BuyPage() {
     updateEdges();
     window.addEventListener('resize', updateEdges);
     return () => window.removeEventListener('resize', updateEdges);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeId]);
 
   const scroll = (dir: 1 | -1) => {

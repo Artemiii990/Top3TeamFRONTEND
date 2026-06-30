@@ -1,0 +1,221 @@
+.section {
+  background: var(--paper);
+  padding: 32px 0 96px;
+}
+
+.heading {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(32px, 4vw, 44px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 40px;
+  padding: 0 24px;
+}
+
+/* ============================================================
+   PLAYER — the looping "video" is an animated gradient scene;
+   swap .scene's background for a real <video> element later,
+   the play/pause control logic won't need to change.
+   ============================================================ */
+.player {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto 56px;
+  padding: 0 24px;
+}
+
+.frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.18);
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.6s var(--ease);
+}
+.sceneActive {
+  opacity: 1;
+}
+
+.sceneBg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  animation: drift 14s linear infinite;
+}
+.framePaused .sceneBg {
+  animation-play-state: paused;
+}
+
+@keyframes drift {
+  0% { transform: scale(1.04) translate(0, 0); }
+  50% { transform: scale(1.1) translate(-1.5%, -1%); }
+  100% { transform: scale(1.04) translate(0, 0); }
+}
+
+.sceneCaption {
+  position: absolute;
+  left: 24px;
+  bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px; 
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+}
+.sceneCaption .glyph {
+  display: inline-flex;
+  align-items: center;
+  height: 16px;
+}
+.sceneCaption .glyph svg {
+  width: 44px; /*14 -> 44*/
+  height: 46px; /*16 -> 46*/
+  fill: currentColor;
+}
+.sceneCaption .divider {
+  width: 1px;
+  height: 14px;
+  background: rgba(255, 255, 255, 0.45);
+}
+.sceneCaption .title {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.toggle {
+  position: absolute;
+  right: 20px;
+  bottom: 16px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: background 0.2s var(--ease);
+}
+.toggle:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+.toggle svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+/* ============================================================
+   SERVICES ROW — three equal blocks: TV / Music / Arcade.
+   ============================================================ */
+.services {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.service {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.serviceLogoRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0px; /*8 -> 0*/
+  margin-bottom: 18px;
+}
+.serviceLogoRow .glyph {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  color: var(--text-primary);
+}
+.serviceLogoRow .glyph svg {
+  width: 59px; /*19 -> 59*/
+  height: 62px; /*22 -> 62*/
+  fill: currentColor;
+}
+.serviceWordmark {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+
+.serviceText {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  max-width: 280px;
+  margin-bottom: 28px;
+  min-height: 48px;
+}
+
+.serviceBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 22px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background 0.2s var(--ease);
+}
+.serviceBtn:hover {
+  background: var(--accent-glow);
+}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+@media (max-width: 900px) {
+  .section {
+    padding: 24px 0 64px;
+  }
+  .heading {
+    margin-bottom: 28px;
+  }
+  .player {
+    margin-bottom: 40px;
+  }
+  .frame {
+    border-radius: 14px;
+  }
+  .toggle {
+    width: 32px;
+    height: 32px;
+  }
+  .services {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}

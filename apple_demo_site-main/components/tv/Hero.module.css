@@ -1,0 +1,173 @@
+.hero {
+  background: var(--paper);
+  padding: 56px 0 64px;
+  text-align: center;
+}
+
+.logoRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0px; /*10 -> 0*/
+  margin-bottom: 28px;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  color: var(--text-primary);
+}
+.logo svg {
+  width: 68px; /*28 -> 68*/
+  height: 72px; /*32-> 72*/
+  fill: currentColor;
+}
+
+.wordmark {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 34px;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+.wordmark span {
+  /* the "4K" suffix gets the multicolor treatment, same spirit as the
+     real product lockup — rendered as a gradient text fill so it reads
+     as a single brand mark rather than a decorative flourish. */
+  background: linear-gradient(90deg, #f5515f 0%, #9f041b 22%, #e39526 48%, #2cab63 72%, #0070c9 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-left: 6px;
+}
+
+.headline {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(32px, 4.6vw, 48px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  max-width: 720px;
+  margin: 0 auto 32px;
+}
+
+.ctaRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 56px;
+}
+
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 22px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 17px;
+  font-weight: 500;
+  transition: background 0.2s var(--ease);
+  white-space: nowrap;
+}
+.btnPrimary:hover {
+  background: var(--accent-glow);
+}
+
+.btnLink {
+  font-size: 17px;
+  color: var(--accent);
+  white-space: nowrap;
+}
+.btnLink:hover {
+  text-decoration: underline;
+}
+
+/* ============================================================
+   PRODUCT STAGE — placeholder gradient standing in for the hero
+   product photography; swap for a real <img>/<picture> later.
+   ============================================================ */
+.stage {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.stageImage {
+  width: 100%;
+  aspect-ratio: 16 / 8;
+  border-radius: 28px;
+  background: linear-gradient(165deg, #2c2c2e 0%, #050505 55%, #000 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Soft ambient glow behind the device, evoking the lifestyle shot
+   without depending on a real photo asset. */
+.stageImage::before {
+  content: '';
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(circle at 30% 35%, rgba(255, 255, 255, 0.08), transparent 55%);
+}
+
+.deviceMark {
+  position: absolute;
+  bottom: 14%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 78px;
+  height: 78px;
+  border-radius: 18px;
+  background: #000;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+.deviceMark svg {
+  width: 30px;
+  height: 30px;
+  fill: currentColor;
+}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+@media (max-width: 900px) {
+  .hero {
+    padding: 40px 0 48px;
+  }
+  .wordmark {
+    font-size: 26px;
+  }
+  .headline {
+    padding: 0 24px;
+    margin-bottom: 24px;
+  }
+  .ctaRow {
+    margin-bottom: 40px;
+  }
+  .stage {
+    padding: 0 16px;
+  }
+  .stageImage {
+    aspect-ratio: 4 / 5;
+    border-radius: 20px;
+  }
+  .deviceMark {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+  }
+  .deviceMark svg {
+    width: 22px;
+    height: 22px;
+  }
+}
