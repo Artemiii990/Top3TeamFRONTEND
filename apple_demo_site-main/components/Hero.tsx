@@ -1,4 +1,5 @@
 import s from './Hero.module.css';
+import MenuLink from './MenuLink';
 
 function HeroBanner() {
   return (
@@ -8,7 +9,7 @@ function HeroBanner() {
         <p className={s.subtitle}>Зустрічайте найновішу лінійку iPhone</p>
 
         <div className={s.actions}>
-          <a href='#' className={s.cta}>Детальніше</a>
+          <MenuLink href='/iphone' className={s.cta}>Детальніше</MenuLink>
         </div>
       </div>
 
@@ -27,7 +28,7 @@ function TabletBanner() {
         <p className={s.subtitle}>Відтепер з турбопотужністю M4.</p>
 
         <div className={s.actions}>
-          <a href='#' className={s.cta}>Детальніше</a>
+          <MenuLink href='/ipad-air' className={s.cta}>Детальніше</MenuLink>
         </div>
       </div>
 
@@ -46,7 +47,7 @@ function MacBanner() {
         <p className={s.subtitle}>Відтепер з турбопотужністю M5.</p>
 
         <div className={s.actions}>
-          <a href='#' className={s.cta}>Детальніше</a>
+          <MenuLink href='/macbook-air' className={s.cta}>Детальніше</MenuLink>
         </div>
       </div>
 
@@ -63,6 +64,7 @@ type Card = {
   subtitle: string;
   image: string;
   theme: 'light' | 'dark';
+  href: string;
 };
 
 const CARDS: Card[] = [
@@ -72,6 +74,7 @@ const CARDS: Card[] = [
     subtitle: 'Звучання. У ремастерингу.',
     image: '/images/airpods.jpeg',
     theme: 'light',
+    href: '/airpods-max', 
   },
   {
     id: 'macbook-pro',
@@ -79,6 +82,7 @@ const CARDS: Card[] = [
     subtitle: 'Тепер із M5, M5 Pro або M5 Max.',
     image: '/images/macbook-pro.jpg',
     theme: 'dark',
+    href: '/macbook-pro', 
   },
   {
     id: 'airpods-pro',
@@ -86,6 +90,7 @@ const CARDS: Card[] = [
     subtitle: 'Неймовірне активне поглинання шуму.',
     image: '/images/airpods-pro.jpg',
     theme: 'light',
+    href: '/airpods-pro', 
   },
   {
     id: 'watch-ultra',
@@ -93,6 +98,7 @@ const CARDS: Card[] = [
     subtitle: 'Ручний звір.',
     image: '/images/watch.jpg',
     theme: 'dark',
+    href: '/apple-watch-ultra-3', 
   },
   {
     id: 'ipad-pro',
@@ -100,6 +106,7 @@ const CARDS: Card[] = [
     subtitle: 'Розширена продуктивність ШІ та можливості, що змінюють правила гри.',
     image: '/images/ipad-pro.jpg',
     theme: 'dark',
+    href: '/ipad-pro', 
   },
   {
     id: 'watch-series',
@@ -107,6 +114,7 @@ const CARDS: Card[] = [
     subtitle: "Чудовий спосіб стежити за своїм здоров'ям.",
     image: '/images/watch-series.jpg',
     theme: 'light',
+    href: '/apple-watch-series-11', 
   },
 ];
 
@@ -122,7 +130,7 @@ function GridSection() {
             <h3 className={s.cardTitle}>{card.title}</h3>
             <p className={s.cardSubtitle}>{card.subtitle}</p>
             <div className={s.actions}>
-              <a href='#' className={s.cta}>Детальніше</a>
+              <MenuLink href={card.href} className={s.cta}>Детальніше</MenuLink>
             </div>
           </div>
 

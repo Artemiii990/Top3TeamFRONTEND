@@ -122,6 +122,7 @@ export default function Nav() {
       </div>
 
       {/* ICONS */}
+      {/* Search */}
       <a
         href="#"
         className={`${s.icon} ${s.search}`}
@@ -145,6 +146,7 @@ export default function Nav() {
           <line x1="15.5" y1="15.5" x2="20" y2="20" style={{ fill: 'none' }} />
         </svg>
       </a>
+      {/*Shopping bag */}
       <a href="#" className={s.icon} aria-label="Shopping Bag">
         <svg viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M14.91 4.39H12.4A3.41 3.41 0 0 0 9 1a3.41 3.41 0 0 0-3.4 3.39H3.09a.5.5 0 0 0-.5.5v11.41a.7.7 0 0 0 .7.7h11.41a.7.7 0 0 0 .7-.7V4.89a.5.5 0 0 0-.49-.5zM9 2a2.41 2.41 0 0 1 2.4 2.39H6.6A2.41 2.41 0 0 1 9 2zm5.41 14H3.59V5.39H5.6v1.49a.5.5 0 0 0 1 0V5.39h4.8v1.49a.5.5 0 0 0 1 0V5.39h2.01z" />
