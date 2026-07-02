@@ -72,7 +72,7 @@ export const MENU_DATA: Record<string, MenuEntry> = {
         links: [ 
           { 
             label: 'Підтримка Mac',
-            href: '/support/mac-support', 
+            href: '/support/mac', 
           }
         ],
       },
@@ -101,7 +101,7 @@ export const MENU_DATA: Record<string, MenuEntry> = {
         links: [ 
           { 
             label: 'Підтримка iPad',
-            href: '/support/ipad-support', 
+            href: '/support/ipad', 
           }
         ],
       },
@@ -129,7 +129,7 @@ export const MENU_DATA: Record<string, MenuEntry> = {
         links: [ 
           { 
             label: 'Підтримка iPhone', 
-            href: '/support/iphone-support', 
+            href: '/support/iphone', 
           }, 
         ],
       },
@@ -152,7 +152,7 @@ export const MENU_DATA: Record<string, MenuEntry> = {
       {
         title: 'Більше від Watch',
         links: [ 
-          { label: 'Підтримка Apple Watch', href: '/support/watch-support' }
+          { label: 'Підтримка Apple Watch', href: '/support/watch' }
         ],
       },
     ],
@@ -174,7 +174,7 @@ export const MENU_DATA: Record<string, MenuEntry> = {
       {
         title: 'Більше від AirPods',
         links: [ 
-          { label: 'Підтримка AirPods', href: '/support/airpods-support' },
+          { label: 'Підтримка AirPods', href: '/support/airpods' },
         ],
       },
     ],
@@ -191,7 +191,7 @@ export const MENU_DATA: Record<string, MenuEntry> = {
       {
         title: 'Більше від TV',
         links: [
-          { label: 'Підтримка Apple TV', href: '/support/tv-support' }, 
+          { label: 'Підтримка Apple TV', href: '/support/tv' }, 
         ],
       },
     ],
@@ -213,8 +213,8 @@ export const MENU_DATA: Record<string, MenuEntry> = {
       {
         title: 'Підтримка',
         links: [
-          { label: 'Підтримка Apple TV', href: '/support/tv-support' },
-          { label: 'Підтримка Apple Music', href: '/support/music-support' }, 
+          { label: 'Підтримка Apple TV', href: '/support/tv' },
+          { label: 'Підтримка Apple Music', href: '/support/music' }, 
         ],
       },
     ],
@@ -224,13 +224,13 @@ export const MENU_DATA: Record<string, MenuEntry> = {
   Підтримка: {
     title: 'Дізнатися про підтримку',
     featured: [
-      { label: 'iPhone', href: '/support/iphone-support' },
-      { label: 'Mac', href: '/support/mac-support' },
-      { label: 'iPad', href: '/support/ipad-support' }, 
-      { label: 'Watch', href: '/support/watch-support' },
-      { label: 'AirPods', href: '/support/airpods-support' },
-      { label: 'Music', href: '/support/music-support' },
-      { label: 'TV', href: '/support/tv-support' },
+      { label: 'iPhone', href: '/support/iphone' },
+      { label: 'Mac', href: '/support/mac' },
+      { label: 'iPad', href: '/support/ipad' }, 
+      { label: 'Watch', href: '/support/watch' },
+      { label: 'AirPods', href: '/support/airpods' },
+      { label: 'Music', href: '/support/music' },
+      { label: 'TV', href: '/support/tv' },
     ],
     bottomLink: {
       label: 'Дізнатися про підтримку', href: '/support' 
