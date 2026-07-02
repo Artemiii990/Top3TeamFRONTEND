@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import s from './Lineup.module.css';
+import MenuLink from './MenuLink';
 
 type Model = {
   name: string;
@@ -90,9 +91,9 @@ export default function Lineup() {
       <div className={s.headerRow}>
         <h2 className={s.heading}>Дізнайтеся більше про лінійку.</h2>
 
-        <a href="/iphone/compare" className={s.compareLink}>
+        <MenuLink href="/iphone/compare" className={s.compareLink}>
           Порівняйте всі моделі <span aria-hidden="true">›</span>
-        </a>
+        </MenuLink>
       </div>
 
       <ul
@@ -127,10 +128,10 @@ export default function Lineup() {
             <p className={s.description}>{model.description}</p>
 
             <div className={s.ctaRow}>
-              <a href={model.moreHref} className={s.btnPrimary}>Детальніше</a>
-              <a href={model.buyHref} className={s.btnLink}>
+              <MenuLink href={model.moreHref} className={s.btnPrimary}>Детальніше</MenuLink>
+              <MenuLink href={model.buyHref} className={s.btnLink}>
                 Купити <span aria-hidden="true">›</span>
-              </a>
+              </MenuLink>
             </div>
           </li>
         ))}

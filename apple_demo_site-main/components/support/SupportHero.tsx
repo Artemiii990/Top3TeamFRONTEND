@@ -1,3 +1,4 @@
+import MenuLink from './MenuLink';
 import s from './SupportHero.module.css';
 
 type ProductTile = {
@@ -136,12 +137,12 @@ export default function SupportHero() {
       <ul className={s.tiles}>
         {PRODUCT_TILES.map(tile => (
           <li key={tile.label} className={s.tile}>
-            <a href={tile.href} className={s.tileLink}>
+            <MenuLink href={tile.href} className={s.tileLink}>
               <span className={s.tileIcon} aria-hidden="true">
                 <ProductShape shape={tile.shape} />
               </span>
               <span className={s.tileLabel}>{tile.label}</span>
-            </a>
+            </MenuLink>
           </li>
         ))}
       </ul>
@@ -152,9 +153,9 @@ export default function SupportHero() {
             <span className={`${s.helpIcon} ${s[card.iconColor]}`} aria-hidden="true">
               <HelpIcon icon={card.icon} />
             </span>
-            <a href={card.href} className={s.helpLink}>
+            <MenuLink href={card.href} className={s.helpLink}>
               {card.label}
-            </a>
+            </MenuLink>
           </li>
         ))}
       </ul>

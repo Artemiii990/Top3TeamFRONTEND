@@ -1,3 +1,4 @@
+import MenuLink from './MenuLink';
 import s from './SupportPromo.module.css';
 
 const APPLE_SUPPORT_APP_URL =
@@ -41,7 +42,7 @@ export default function SupportPromo() {
           Деякі підроблені та сторонні адаптери живлення й акумулятори можуть мати неправильну
           конструкцію та призводити до проблем із безпекою. Щоб гарантовано отримати оригінальний
           акумулятор Apple під час заміни, рекомендуємо відвідати{' '}
-          <a href="/support/locate">авторизованого постачальника послуг Apple</a>. Якщо вам потрібен
+          <MenuLink href="/support/locate">авторизованого постачальника послуг Apple</MenuLink>. Якщо вам потрібен
           адаптер на заміну, щоб заряджати пристрій Apple, рекомендуємо придбати адаптер живлення Apple.
         </p>
         <p className={s.warningBody}>

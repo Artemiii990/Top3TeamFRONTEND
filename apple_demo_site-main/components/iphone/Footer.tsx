@@ -1,29 +1,69 @@
 import s from './Footer.module.css';
+import MenuLink from './MenuLink';
 
-const COLUMNS: { heading: string; links: string[] }[] = [
+type FooterLink = {
+  label: string;
+  href: string;
+};
+
+type FooterColumn = {
+  heading: string;
+  links: FooterLink[];
+};
+
+const COLUMNS: FooterColumn[] = [
   {
     heading: 'Продукти',
-    links: ['Mac', 'iPad', 'iPhone', 'Watch', 'AirPods', 'TV', 'AirTag'],
+    links: [
+      { label: 'Mac', href: '/mac' }, 
+      { label: 'iPad', href: '/ipad' },
+      { label: 'iPhone', href: '/iphone' },
+      { label: 'Watch', href: '/watch' },
+      { label: 'AirPods', href: '/airpods' }, 
+      { label: 'TV', href: '/tv' },
+      { label: 'AirTag', href: '/airtag' }, 
+    ],
   },
   {
     heading: 'Обліковий запис',
-    links: ['Керування обліковим записом Apple', 'iCloud.com']
+    links: [
+      { label: 'Керування обліковим записом Apple', href: '/apple-account' }, 
+      { label: 'iCloud.com', href: 'https://www.icloud.com/' } ,
+    ]
   },
   {
     heading: 'Сервіси',
-    links: ['Apple One', 'Apple TV', 'Apple Music', 'Apple Arcade', 'Apple Podcasts', 'Apple Books', 'App Store'],
+    links: [
+      { label: 'Apple One', href: 'https://www.apple.com/apple-one/' }, 
+      { label: 'Apple TV', href: 'https://tv.apple.com/ua' }, 
+      { label: 'Apple Music', href: 'https://www.apple.com/apple-music/' }, 
+      { label: 'Apple Arcade', href: 'https://www.apple.com/apple-arcade/' }, 
+      { label: 'Apple Podcasts', href: 'https://www.apple.com/apple-podcasts/' }, 
+      { label: 'Apple Books', href: 'https://www.apple.com/apple-books/' },
+      { label: 'App Store', href: 'https://www.apple.com/app-store/' }, 
+    ],
   },
   {
     heading: 'Для бізнесу',
-    links: ['Apple і бізнес']
+    links: [
+      { label: 'Apple і бізнес', href: 'https://www.apple.com/business/' },
+    ]
   },
   {
     heading: 'Цінності Apple',
-    links: ['Доступність', 'Довкілля', 'Конфіденційність']
+    links: [
+      { label: 'Доступність', href: '/accessibility' },
+      { label: 'Довкілля', href: 'https://www.apple.com/environment/' },
+      { label: 'Конфіденційність', href: 'https://www.apple.com/privacy/' },
+    ]
   },
   {
     heading: 'Про компанію Apple',
-    links: ['Вакансії', 'Інвесторам', 'Етика й відповідність'],
+    links: [
+      { label: 'Вакансії', href: 'https://www.apple.com/careers/ua/' },
+      { label: 'Інвесторам', href: 'https://investor.apple.com/investor-relations/default.aspx' },
+      { label: 'Етика й відповідність', href: 'https://www.apple.com/compliance/' },
+    ],
   },
 ];
 
@@ -47,16 +87,16 @@ export default function Footer() {
           придбаний в iTunes Store. Використовувалися стандартні параметри, окрім наведених далі: через Bluetooth було підключено навушники; ввімкнено мережу 
           Wi‑Fi; вимкнено функції «Питати про приєднання» для мереж Wi‑Fi, «Автояскравість» і True Tone. </p>
         <p>5. Потрібен тарифний план для передавання даних. Технологія 5G доступна не в усіх країнах і лише в деяких операторів мобільного зв’язку.
-          Швидкість залежить від оператора й умов зв’язку. Детальну інформацію про підтримку 5G можна отримати в оператора мобільного зв’язку, а також на <a href='#'>  apple.com/iphone/cellular. </a></p>
+          Швидкість залежить від оператора й умов зв’язку. Детальну інформацію про підтримку 5G можна отримати в оператора мобільного зв’язку, а також на <MenuLink href='https://www.apple.com/iphone/cellular/'>  apple.com/iphone/cellular. </MenuLink></p>
         <p>6. Аксесуари продаються окремо. </p>
         <p>7. Доступна бета-версія Apple Intelligence. Деякі функції доступні не всіма мовами й не в усіх регіонах. Інформацію про доступність функцій і мов, а також системні 
-          вимоги дивіться на <a href='#'> support.apple.com/uk-ua/121115. </a></p>
+          вимоги дивіться на <MenuLink href='/support/how-to-get-apple-intelligent-functions'> support.apple.com/uk-ua/121115. </MenuLink></p>
         <p>8. Функція «Переклад наживо» в Повідомленнях доступна мовами з підтримкою Apple Intelligence, коли ввімкнено Apple Intelligence на сумісному пристрої iPhone, 
           iPad або Mac, а також на Apple Watch Series 9 і новіших моделях, Apple Watch Ultra 2 і новіших моделях та Apple Watch SE 3 у парі з iPhone із підтримкою Apple 
-          Intelligence. Підтримувані мови наведено на<a href='#'> support.apple.com/uk-ua/121115. </a></p>
+          Intelligence. Підтримувані мови наведено на<MenuLink href='/support/how-to-get-apple-intelligent-functions'> support.apple.com/uk-ua/121115. </MenuLink></p>
         <p>9. Візуальний інтелект доступний на будь-якій моделі iPhone із підтримкою Apple Intelligence. Деякі функції доступні не всіма мовами та не в усіх регіонах. 
-          Детальніше дивіться на <a href='#'>  support.apple.com/uk-ua/121115#visual-intelligence. </a></p>
-        <p>10. Доступна бета-версія функції «Гумка». Сумісні пристрої та системні вимоги можна переглянути на <a href='#'>  support.apple.com/uk-ua/121429. </a></p>
+          Детальніше дивіться на <MenuLink href='/support/how-to-get-apple-intelligent-functions#visual-intelligence'>  support.apple.com/uk-ua/121115#visual-intelligence. </MenuLink></p>
+        <p>10. Доступна бета-версія функції «Гумка». Сумісні пристрої та системні вимоги можна переглянути на <MenuLink href='/support/elasticband-function-in-photos'>  support.apple.com/uk-ua/121429. </MenuLink></p>
         <p>11. Відповідно до розподілу масового балансу. </p>
         <p>12. Моделі iPhone 14 і новіші можуть розпізнавати серйозні автомобільні аварії та викликати допомогу. Потрібна мобільна мережа або можливість виклику 
           за допомогою Wi-Fi. </p>
@@ -66,15 +106,15 @@ export default function Footer() {
         </p>
         <p> Щоб користуватися Apple Pay, потрібна підтримувана картка від емітента, що бере участь у програмі. Щоб перевірити, чи ваша картка сумісна з Apple Pay, зверніться
           до її емітента.</p>
-        <p> Сервіс Apple Pay недоступний у деяких країнах і регіонах. <a href='#'>  Переглянути країни та регіони Apple Pay. </a></p>
+        <p> Сервіс Apple Pay недоступний у деяких країнах і регіонах. <MenuLink href='/support/countries-and-regions-with-applepay'>  Переглянути країни та регіони Apple Pay. </MenuLink></p>
         <p> Функції можуть змінюватися. Деякі функції, додатки та сервіси доступні не всіма мовами й не в усіх регіонах і можуть потребувати певних апаратних і програмних
-          засобів. Докладніше можна дізнатися в розділі<a href='#'>  Доступність функцій. </a></p>
+          засобів. Докладніше можна дізнатися в розділі<MenuLink href='https://www.apple.com/ios/feature-availability/#apple-wallet-apple-pay'>  Доступність функцій. </MenuLink></p>
         <p> Arknights: Endfield вийде на iOS. Дата випуску може змінитися, актуальну інформацію можна переглянути на сайті розробника. </p>
       </div>
 
       {/* FOOTER-BREADCRUMBS */}
       <div className={s.breadcrumbs}>
-        <a href="/" className={s.logo} aria-label="Apple">
+        <MenuLink href="/" className={s.logo} aria-label="Apple">
           <svg
             viewBox="0 0 14 44"
             xmlns="http://www.w3.org/2000/svg"
@@ -86,7 +126,7 @@ export default function Footer() {
               d="M9.9301 13.4151c.5921-.7166 1.0014-1.7184.8856-2.7167-.8536.0359-1.9009.5703-2.5187 1.2814-.5491.6324-1.0455 1.6539-.9148 2.6308.9536.0703 1.9268-.4707 2.5479-1.1955"
             />
           </svg>
-        </a>
+        </MenuLink>
         <span className={s.separator} aria-hidden="true">&rsaquo;</span>
         <a className={s.crumbActive}>iPhone</a>
       </div>
@@ -97,7 +137,7 @@ export default function Footer() {
         <div className={s.column}>
           <div className={s.sectionBlock}>
             <h6>{COLUMNS[0].heading}</h6>
-            {COLUMNS[0].links.map(label => <a key={label} href="#">{label}</a>)}
+            {COLUMNS[0].links.map(link => (<MenuLink key={link.href} href={link.href}>{link.label}</MenuLink>))}
           </div>
         </div>
 
@@ -105,11 +145,11 @@ export default function Footer() {
         <div className={s.column}>
           <div className={s.sectionBlock}>
             <h6>{COLUMNS[1].heading}</h6>
-            {COLUMNS[1].links.map(label => <a key={label} href="#">{label}</a>)}
+            {COLUMNS[1].links.map(link => (<MenuLink key={link.href} href={link.href}>{link.label}</MenuLink>))}
           </div>
           <div className={s.sectionBlock}>
             <h6>{COLUMNS[2].heading}</h6>
-            {COLUMNS[2].links.map(label => <a key={label} href="#">{label}</a>)}
+            {COLUMNS[2].links.map(link => (<MenuLink key={link.href} href={link.href}>{link.label}</MenuLink>))}
           </div>
         </div>
 
@@ -117,7 +157,7 @@ export default function Footer() {
         <div className={s.column}>
           <div className={s.sectionBlock}>
             <h6>{COLUMNS[3].heading}</h6>
-            {COLUMNS[3].links.map(label => <a key={label} href="#">{label}</a>)}
+            {COLUMNS[3].links.map(link => (<MenuLink key={link.href} href={link.href}>{link.label}</MenuLink>))}
           </div>
         </div>
 
@@ -125,17 +165,17 @@ export default function Footer() {
         <div className={s.column}>
           <div className={s.sectionBlock}>
             <h6>{COLUMNS[4].heading}</h6>
-            {COLUMNS[4].links.map(label => <a key={label} href="#">{label}</a>)}
+            {COLUMNS[4].links.map(link => (<MenuLink key={link.href} href={link.href}>{link.label}</MenuLink>))}
           </div>
           <div className={s.sectionBlock}>
             <h6>{COLUMNS[5].heading}</h6>
-            {COLUMNS[5].links.map(label => <a key={label} href="#">{label}</a>)}
+            {COLUMNS[5].links.map(link => (<MenuLink key={link.href} href={link.href}>{link.label}</MenuLink>))}
           </div>
         </div>
       </div>
 
       <div className={s.partnerText}>
-        <a href='#'>Знайти поруч</a> магазин офіційного партнера.
+        <MenuLink href='https://locate.apple.com/ua/en/'>Знайти поруч</MenuLink> магазин офіційного партнера.
       </div>
         
       <div className={s.copyrightBlock}>
@@ -143,10 +183,10 @@ export default function Footer() {
           © 2026 Apple Inc. Усі права застережено.
         </div>
         <div className={s.copyrightLinks}>
-          <a href='#'>Політика конфіденційності</a>
-          <a href='#'>Юридична інформація</a>
-          <a href='#'>Карта сайту</a>
-          <a href='#' className={s.langLink}>Україна</a>
+          <MenuLink href='https://www.apple.com/legal/privacy/uk/'>Політика конфіденційності</MenuLink>
+          <MenuLink href='https://www.apple.com/legal/'>Юридична інформація</MenuLink>
+          <MenuLink href='/sitemap'>Карта сайту</MenuLink>
+          <MenuLink href='https://www.apple.com/choose-country-region/' className={s.langLink}>Україна</MenuLink>
         </div>
       </div>
     </footer>

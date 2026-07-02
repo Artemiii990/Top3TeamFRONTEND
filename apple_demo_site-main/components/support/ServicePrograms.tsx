@@ -1,3 +1,4 @@
+import MenuLink from './MenuLink';
 import s from './ServicePrograms.module.css';
 
 const PROGRAMS = [
@@ -20,16 +21,16 @@ export default function ServicePrograms() {
         <ul className={s.list}>
           {PROGRAMS.map(program => (
             <li key={program.href} className={s.item}>
-              <a href={program.href} className={s.link}>
+              <MenuLink href={program.href} className={s.link}>
                 {program.label}
-              </a>
+              </MenuLink>
             </li>
           ))}
         </ul>
 
-        <a href="/support/service-programs" className={s.viewAll}>
+        <MenuLink href="/support/service-programs" className={s.viewAll}>
           Переглянути всі програми <span aria-hidden="true">›</span>
-        </a>
+        </MenuLink>
       </div>
     </section>
   );

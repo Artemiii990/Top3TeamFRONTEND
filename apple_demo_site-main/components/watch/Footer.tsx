@@ -1,29 +1,69 @@
 import s from './Footer.module.css';
+import MenuLink from './MenuLink';
 
-const COLUMNS: { heading: string; links: string[] }[] = [
+type FooterLink = {
+  label: string;
+  href: string;
+};
+
+type FooterColumn = {
+  heading: string;
+  links: FooterLink[];
+};
+
+const COLUMNS: FooterColumn[] = [
   {
     heading: 'Продукти',
-    links: ['Mac', 'iPad', 'iPhone', 'Watch', 'AirPods', 'TV', 'AirTag'],
+    links: [
+      { label: 'Mac', href: '/mac' }, 
+      { label: 'iPad', href: '/ipad' },
+      { label: 'iPhone', href: '/iphone' },
+      { label: 'Watch', href: '/watch' },
+      { label: 'AirPods', href: '/airpods' }, 
+      { label: 'TV', href: '/tv' },
+      { label: 'AirTag', href: '/airtag' }, 
+    ],
   },
   {
     heading: 'Обліковий запис',
-    links: ['Керування обліковим записом Apple', 'iCloud.com']
+    links: [
+      { label: 'Керування обліковим записом Apple', href: '/apple-account' }, 
+      { label: 'iCloud.com', href: 'https://www.icloud.com/' } ,
+    ]
   },
   {
     heading: 'Сервіси',
-    links: ['Apple One', 'Apple TV', 'Apple Music', 'Apple Arcade', 'Apple Podcasts', 'Apple Books', 'App Store'],
+    links: [
+      { label: 'Apple One', href: 'https://www.apple.com/apple-one/' }, 
+      { label: 'Apple TV', href: 'https://tv.apple.com/ua' }, 
+      { label: 'Apple Music', href: 'https://www.apple.com/apple-music/' }, 
+      { label: 'Apple Arcade', href: 'https://www.apple.com/apple-arcade/' }, 
+      { label: 'Apple Podcasts', href: 'https://www.apple.com/apple-podcasts/' }, 
+      { label: 'Apple Books', href: 'https://www.apple.com/apple-books/' },
+      { label: 'App Store', href: 'https://www.apple.com/app-store/' }, 
+    ],
   },
   {
     heading: 'Для бізнесу',
-    links: ['Apple і бізнес']
+    links: [
+      { label: 'Apple і бізнес', href: 'https://www.apple.com/business/' },
+    ]
   },
   {
     heading: 'Цінності Apple',
-    links: ['Доступність', 'Довкілля', 'Конфіденційність']
+    links: [
+      { label: 'Доступність', href: '/accessibility' },
+      { label: 'Довкілля', href: 'https://www.apple.com/environment/' },
+      { label: 'Конфіденційність', href: 'https://www.apple.com/privacy/' },
+    ]
   },
   {
     heading: 'Про компанію Apple',
-    links: ['Вакансії', 'Інвесторам', 'Етика й відповідність'],
+    links: [
+      { label: 'Вакансії', href: 'https://www.apple.com/careers/ua/' },
+      { label: 'Інвесторам', href: 'https://investor.apple.com/investor-relations/default.aspx' },
+      { label: 'Етика й відповідність', href: 'https://www.apple.com/compliance/' },
+    ],
   },
 ];
 
@@ -49,13 +89,13 @@ export default function Footer() {
           дайвінгу, катання на водних лижах та інших занять, які передбачають контакт із водою на високій швидкості. Apple Watch Ultra 3 має водонепроникність 
           100 метрів за стандартом ISO 22810:2010. Його можна використовувати під час занять швидкісними водними видами спорту і непрофесійного підводного 
           плавання (із сумісним стороннім додатком із App Store) на глибині до 40 метрів. Його не рекомендується використовувати під час занурення на глибину понад 
-          40 метрів. Водонепроникність не є сталою величиною, тому з часом може знижуватися. Детальніше на <a href='#'> support.apple.com/uk‑ua/109522 </a>.</p>
+          40 метрів. Водонепроникність не є сталою величиною, тому з часом може знижуватися. Детальніше на <MenuLink href='/support/watch-protection-from-water'> support.apple.com/uk‑ua/109522 </MenuLink>.</p>
         <p>10. Apple Watch Series 11 та Apple Watch Ultra 3 мають захист від пилу класу IP6X. </p>
         <p>11. Для роботи функції «Сигнал SOS» потрібна мобільна мережа або можливість виклику за допомогою Wi‑Fi з підключенням до інтернету через Apple Watch 
           або iPhone. Ви можете робити екстрені виклики з моделей Apple Watch із підтримкою GPS + Cellular в багатьох місцях, де доступний мобільний зв’язок. Деякі 
           мобільні мережі можуть відхиляти екстрені виклики з вашого Apple Watch, якщо пристрій не активовано або він не сумісний із певною мережею, 
           не налаштований для роботи в ній чи для мобільного зв’язку, а також якщо мобільна мережа не підтримує екстрені виклики через IMS. Детальніше 
-          на <a href='#'> support.apple.com/uk-ua/108374 </a> і <a href='#'> apple.com/ua/watch/cellular </a>. </p>
+          на <MenuLink href='/suppport/emergency-call-sos'> support.apple.com/uk-ua/108374 </MenuLink> і <MenuLink href='/watch/cellular'> apple.com/ua/watch/cellular </MenuLink>. </p>
         <p>12. Коли нахилено під кутом від користувача, як порівняти з Apple Watch Ultra або Ultra 2. </p>
         <p>13. Час роботи від акумулятора протягом кількох днів, зокрема з увімкненою функцією відстеження сну, розраховано за такого використання: 600 перевірок часу, 
           180 повідомлень, 30 хвилин використання додатків і 60‑хвилинне тренування з відтворенням музики з Apple Watch через Bluetooth, а також 6 годин відстеження 
@@ -71,23 +111,23 @@ export default function Footer() {
           з провідними двочастотними GPS‑годинниками для спорту, наявними в продажу на момент тестування в серпні 2025 року. </p>
         <p>15. Для використання мобільного зв’язку потрібен тарифний план для бездротового зв’язку. За додатковими відомостями звертайтеся до свого оператора. 
           Стабільність підключення може змінюватися залежно від доступності мережі. Ознайомитися з доступними операторами бездротового зв’язку й умовами участі 
-          у програмі можна на <a href='#'> apple.com/ua/watch/cellular </a>. Детальніше про налаштування дивіться на <a href='#'> support.apple.com/uk-ua/HT207578 </a>. </p>
+          у програмі можна на <MenuLink href='/watch/cellular'> apple.com/ua/watch/cellular </MenuLink>. Детальніше про налаштування дивіться на <MenuLink href='/support/setting-up-cellular-on-the-applewatch'> support.apple.com/uk-ua/HT207578 </MenuLink>. </p>
         <p>16. Щоб користуватися Apple Music, потрібна передплата. </p>
         <p>17. Доступно лише з вибраними партнерами та в певних регіонах і підтримується не на всіх пристроях і не в усіх версіях операційної системи. </p>
         <p>Щоб користуватись Oceanic+, потрібна передплата. Доступно в App Store. З Apple Watch Series 11 можна займатися снорклінгом на глибині до 6 метрів, 
           а з Apple Watch Ultra 3 занурюватися на глибину до 40 метрів. Завжди дотримуйтеся протоколів занурень, занурюйтеся з напарником і майте при собі додатковий 
           пристрій. </p>
         <p>Для Apple Watch Ultra 3, Apple Watch Series 11 та Apple Watch SE 3 потрібен iPhone 11 або новішої моделі з iOS 26 або новішої версії. </p>
-        <p>Функції можуть змінюватися. Деякі функції, додатки та сервіси доступні не всіма мовами та не в усіх регіонах. Перегляньте повний <a href='#'> перелік </a>. </p>
+        <p>Функції можуть змінюватися. Деякі функції, додатки та сервіси доступні не всіма мовами та не в усіх регіонах. Перегляньте повний <MenuLink href='https://www.apple.com/watchos/feature-availability/'> перелік </MenuLink>. </p>
         <p>Наявність певних ремінців не гарантовано. </p>
         <p>Щоб користуватись Apple Pay, потрібна підтримувана картка від емітента, що бере участь у програмі. Щоб перевірити, чи ваша картка сумісна з Apple Pay, зверніться 
           до її емітента. </p>
-        <p>Сервіс Apple Pay недоступний у деяких країнах і регіонах. <a href='#'> Перегляньте перелік країн і регіонів, де підтримується Apple Pay </a>.  </p>
+        <p>Сервіс Apple Pay недоступний у деяких країнах і регіонах. <MenuLink href='https://www.apple.com/watchos/feature-availability/#apple-wallet-apple-pay'> Перегляньте перелік країн і регіонів, де підтримується Apple Pay </MenuLink>.  </p>
       </div>
 
       {/* FOOTER-BREADCRUMBS */}
       <div className={s.breadcrumbs}>
-        <a href="/" className={s.logo} aria-label="Apple">
+        <MenuLink href="/" className={s.logo} aria-label="Apple">
           <svg
             viewBox="0 0 14 44"
             xmlns="http://www.w3.org/2000/svg"
@@ -99,7 +139,7 @@ export default function Footer() {
               d="M9.9301 13.4151c.5921-.7166 1.0014-1.7184.8856-2.7167-.8536.0359-1.9009.5703-2.5187 1.2814-.5491.6324-1.0455 1.6539-.9148 2.6308.9536.0703 1.9268-.4707 2.5479-1.1955"
             />
           </svg>
-        </a>
+        </MenuLink>
         <span className={s.separator} aria-hidden="true">&rsaquo;</span>
         {/* <a href="/mac" className={s.crumbActive}>Mac</a> */}
         <a className={s.crumbActive}>Watch</a>
@@ -111,7 +151,7 @@ export default function Footer() {
         <div className={s.column}>
           <div className={s.sectionBlock}>
             <h6>{COLUMNS[0].heading}</h6>
-            {COLUMNS[0].links.map(label => <a key={label} href="#">{label}</a>)}
+            {COLUMNS[0].links.map(link => (<MenuLink key={link.href} href={link.href}>{link.label}</MenuLink>))}
           </div>
         </div>
 
@@ -119,11 +159,11 @@ export default function Footer() {
         <div className={s.column}>
           <div className={s.sectionBlock}>
             <h6>{COLUMNS[1].heading}</h6>
-            {COLUMNS[1].links.map(label => <a key={label} href="#">{label}</a>)}
+            {COLUMNS[1].links.map(link => (<MenuLink key={link.href} href={link.href}>{link.label}</MenuLink>))}
           </div>
           <div className={s.sectionBlock}>
             <h6>{COLUMNS[2].heading}</h6>
-            {COLUMNS[2].links.map(label => <a key={label} href="#">{label}</a>)}
+            {COLUMNS[2].links.map(link => (<MenuLink key={link.href} href={link.href}>{link.label}</MenuLink>))}
           </div>
         </div>
 
@@ -131,7 +171,7 @@ export default function Footer() {
         <div className={s.column}>
           <div className={s.sectionBlock}>
             <h6>{COLUMNS[3].heading}</h6>
-            {COLUMNS[3].links.map(label => <a key={label} href="#">{label}</a>)}
+            {COLUMNS[3].links.map(link => (<MenuLink key={link.href} href={link.href}>{link.label}</MenuLink>))}
           </div>
         </div>
 
@@ -139,17 +179,17 @@ export default function Footer() {
         <div className={s.column}>
           <div className={s.sectionBlock}>
             <h6>{COLUMNS[4].heading}</h6>
-            {COLUMNS[4].links.map(label => <a key={label} href="#">{label}</a>)}
+            {COLUMNS[4].links.map(link => (<MenuLink key={link.href} href={link.href}>{link.label}</MenuLink>))}
           </div>
           <div className={s.sectionBlock}>
             <h6>{COLUMNS[5].heading}</h6>
-            {COLUMNS[5].links.map(label => <a key={label} href="#">{label}</a>)}
+            {COLUMNS[5].links.map(link => (<MenuLink key={link.href} href={link.href}>{link.label}</MenuLink>))}
           </div>
         </div>
       </div>
 
       <div className={s.partnerText}>
-        <a href='#'>Знайти поруч</a> магазин офіційного партнера.
+        <MenuLink href='https://locate.apple.com/ua/en/'>Знайти поруч</MenuLink> магазин офіційного партнера.
       </div>
         
       <div className={s.copyrightBlock}>
@@ -157,10 +197,10 @@ export default function Footer() {
           © 2026 Apple Inc. Усі права застережено.
         </div>
         <div className={s.copyrightLinks}>
-          <a href='#'>Політика конфіденційності</a>
-          <a href='#'>Юридична інформація</a>
-          <a href='#'>Карта сайту</a>
-          <a href='#' className={s.langLink}>Україна</a>
+          <MenuLink href='https://www.apple.com/legal/privacy/uk/'>Політика конфіденційності</MenuLink>
+          <MenuLink href='https://www.apple.com/legal/'>Юридична інформація</MenuLink>
+          <MenuLink href='/sitemap'>Карта сайту</MenuLink>
+          <MenuLink href='https://www.apple.com/choose-country-region/' className={s.langLink}>Україна</MenuLink>
         </div>
       </div>
     </footer>

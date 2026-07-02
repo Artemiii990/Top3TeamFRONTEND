@@ -1,15 +1,20 @@
 // Each menu has a flexible number of columns (1-3, confirmed varies by section).
 // Column 1 is always: title + bold "featured" links + an optional smaller "bottom" link.
+// menulink helps with redirections for MegaMenu
+type MenuLink = {
+  label: string;
+  href: string;
+};
 // Extra columns are plain { title, links[] } groups.
 type ExtraColumn = {
   title: string;
-  links: string[];
+  links: MenuLink[];
 };
 
 type MenuEntry = {
   title: string;
-  featured: string[];
-  bottomLink?: string; // e.g. "Порівняння моделей Mac" / "Дізнатися про підтримку" / "Переглянути всі варіанти"
+  featured: MenuLink[];
+  bottomLink?: MenuLink; // e.g. "Порівняння моделей Mac" / "Дізнатися про підтримку" / "Переглянути всі варіанти"
   columns?: ExtraColumn[]; // 0, 1, or 2 extra columns
 };
 
@@ -17,22 +22,29 @@ export const MENU_DATA: Record<string, MenuEntry> = {
   Store: {
     title: 'Магазин',
     featured: [
-      'Переглянути магазин',
-      'Mac',
-      'iPad',
-      'iPhone',
-      'Apple Watch',
-      'AirPods',
-      'TV',
+      { label: 'Переглянути магазин', href: '/' },
+      { label: 'Mac', href: '/mac' }, 
+      { label: 'iPad', href: '/ipad' },
+      { label: 'iPhone', href: '/iphone' },
+      { label: 'Apple Watch', href: '/watch' },
+      { label: 'AirPods', href: '/airpods' },
+      { label: 'TV', href: '/tv' },
     ],
     columns: [
       {
         title: 'Покупки в Apple',
-        links: ['Спеціальні пропозиції', 'Apple Trade In', 'Фінансування'],
+        links: [
+          { label: 'Спеціальні пропозиції', href: '/' }, 
+          { label: 'Apple Trade In', href: 'https://www.apple.com/uk/shop/trade-in' },
+          { label: 'Фінансування', href: 'https://www.apple.com/uk/shop/browse/financing' },
+        ],
       },
       {
         title: 'Допомога',
-        links: ['Статус замовлення', 'Допомога з покупкою'],
+        links: [
+          { label: 'Статус замовлення', href: 'https://secure8.store.apple.com/uk/shop/signIn/orders?ssi=4AAABnxtMISsBIJaZj0q0IJAQhLNQ2Wk-XsQoJCDvzqrjMfqqw62XY1WqAAAANWh0dHBzOi8vc2VjdXJlOC5zdG9yZS5hcHBsZS5jb20vdWsvc2hvcC9vcmRlci9saXN0fHx8AAIBBZosom47EtVVNsYMnYfM1RYsdfStLLZTiy5P71V-IGM' },
+          { label: 'Допомога з покупкою', href: 'https://www.apple.com/uk/shop/help' },
+        ],
       },
     ],
   },
@@ -41,20 +53,28 @@ export const MENU_DATA: Record<string, MenuEntry> = {
   Mac: {
     title: 'Дізнатися про Mac',
     featured: [
-      'Переглянути всі моделі Mac',
-      'MacBook Neo',
-      'MacBook Air',
-      'MacBook Pro',
-      'iMac',
-      'Mac mini',
-      'Mac Studio',
-      'Дисплеї',
+      { label: 'Переглянути всі моделі Mac', href: '/mac' },
+      { label: 'MacBook Neo', href: '/macbook-neo' },
+      { label: 'MacBook Air', href: '/macbook-air' },
+      { label: 'MacBook Pro', href: '/macbook-pro' },
+      { label: 'iMac', href: '/imac' },
+      { label: 'Mac mini', href: '/mac-mini' },
+      { label: 'Mac Studio', href: '/mac-studio' },
+      { label: 'Дисплеї', href: '/displays' },
     ],
-    bottomLink: 'Порівняння моделей Mac',
+    bottomLink: {
+      label: 'Порівняння моделей Mac',
+      href: '/mac/compare', 
+    },
     columns: [
       {
         title: 'Більше від Mac',
-        links: ['Підтримка Mac'],
+        links: [ 
+          { 
+            label: 'Підтримка Mac',
+            href: '/support/mac-support', 
+          }
+        ],
       },
     ],
   },
@@ -63,19 +83,27 @@ export const MENU_DATA: Record<string, MenuEntry> = {
   iPad: {
     title: 'Дізнатися про iPad',
     featured: [
-      'Переглянути всі моделі iPad',
-      'iPad Pro',
-      'iPad Air',
-      'iPad',
-      'iPad mini',
-      'Apple Pencil',
-      'Клавіатури', 
+      { label: 'Переглянути всі моделі iPad', href: '/ipad' },
+      { label: 'iPad Pro', href: '/ipad-pro' },
+      { label: 'iPad Air', href: '/ipad-air' },
+      { label: 'iPad', href: '/ipad-11' },
+      { label: 'iPad mini', href: '/ipad-mini' },
+      { label: 'Apple Pencil', href: '/apple-pencil' },
+      { label: 'Клавіатури', href: '/ipad-keyboards' },
     ],
-    bottomLink: 'Порівняння моделей iPad',
+    bottomLink: {
+      label: 'Порівняння моделей iPad',
+      href: '/ipad/compare', 
+    },
     columns: [
       {
         title: 'Більше від iPad',
-        links: ['Підтримка iPad'],
+        links: [ 
+          { 
+            label: 'Підтримка iPad',
+            href: '/support/ipad-support', 
+          }
+        ],
       },
     ],
   },
@@ -84,18 +112,26 @@ export const MENU_DATA: Record<string, MenuEntry> = {
   iPhone: {
     title: 'Дізнатися про iPhone',
     featured: [
-      'Переглянути всі моделі iPhone',
-      'iPhone 17 Pro',
-      'iPhone Air',
-      'iPhone 17',
-      'iPhone 17e',
-      'iPhone 16',
+      { label: 'Переглянути всі моделі iPhone', href: '/iphone' },
+      { label: 'iPhone 17 Pro', href: '/iphone-17-pro' },
+      { label: 'iPhone Air', href: '/iphone-air' },
+      { label: 'iPhone 17', href: '/iphone-17' },
+      { label: 'iPhone 17e', href: '/iphone-17e' },
+      { label: 'iPhone 16', href: '/iphone-16/specs' },
     ],
-    bottomLink: 'Порівняння моделей iPhone',
+    bottomLink: {
+      label: 'Порівняння моделей iPhone', 
+      href: '/iphone/compare'
+    },
     columns: [
       {
         title: 'Більше від iPhone',
-        links: ['Підтримка iPhone'],
+        links: [ 
+          { 
+            label: 'Підтримка iPhone', 
+            href: '/support/iphone-support', 
+          }, 
+        ],
       },
     ],
   },
@@ -104,16 +140,20 @@ export const MENU_DATA: Record<string, MenuEntry> = {
   Watch: {
     title: 'Дізнатися про Watch',
     featured: [
-      'Переглянути всі моделі Apple Watch',
-      'Apple Watch Series 11',
-      'Apple Watch SE 3',
-      'Apple Watch Ultra 3',
+      { label: 'Переглянути всі моделі Apple Watch', href: '/watch' },
+      { label: 'Apple Watch Series 11', href: '/apple-watch-series-11' },
+      { label: 'Apple Watch SE 3', href: '/apple-watch-se-3' },
+      { label: 'Apple Watch Ultra 3', href: '/apple-watch-ultra-3' },
     ],
-    bottomLink: 'Порівняння моделей Watch',
+    bottomLink: {
+      label: 'Порівняння моделей Watch', href: '/watch/compare' 
+    },
     columns: [
       {
         title: 'Більше від Watch',
-        links: ['Підтримка Apple Watch'],
+        links: [ 
+          { label: 'Підтримка Apple Watch', href: '/support/watch-support' }
+        ],
       },
     ],
   },
@@ -122,16 +162,20 @@ export const MENU_DATA: Record<string, MenuEntry> = {
   AirPods: {
     title: 'Дізнатися про AirPods',
     featured: [
-      'Переглянути всі моделі AirPods',
-      'AirPods 4', 
-      'AirPods Pro 3', 
-      'AirPods Max 2',
+      { label: 'Переглянути всі моделі AirPods', href: '/airpods' },
+      { label: 'AirPods 4', href: '/airpods-4' },
+      { label: 'AirPods Pro 3', href: '/airpods-pro' },  
+      { label: 'AirPods Max 2', href: '/airpods-max' },
     ],
-    bottomLink: 'Порівняння моделей AirPods',
+    bottomLink: {
+      label: 'Порівняння моделей AirPods', href: '/airpods/compare', 
+    },
     columns: [
       {
         title: 'Більше від AirPods',
-        links: ['Підтримка AirPods'],
+        links: [ 
+          { label: 'Підтримка AirPods', href: '/support/airpods-support' },
+        ],
       },
     ],
   },
@@ -140,13 +184,15 @@ export const MENU_DATA: Record<string, MenuEntry> = {
   TV: {
     title: 'Дізнатися про TV',
     featured: [
-      'Дізнатися про TV',
-      'Apple TV 4K',
+      { label: 'Дізнатися про TV', href: '/tv' },
+      { label: 'Apple TV 4K', href: '/apple-tv-4k/specs' },
     ],
     columns: [
       {
         title: 'Більше від TV',
-        links: ['Підтримка Apple TV'],
+        links: [
+          { label: 'Підтримка Apple TV', href: '/support/tv-support' }, 
+        ],
       },
     ],
   },
@@ -155,18 +201,21 @@ export const MENU_DATA: Record<string, MenuEntry> = {
   Сервіси: {
     title: 'Дізнатися про сервіси',
     featured: [
-      'Переглянути сервіси',
-      'Apple One',
-      'Apple TV',
-      'Apple Music', 
-      'Apple Arcade',
-      'Apple Podcasts',
-      'App Store',
+      { label: 'Переглянути сервіси', href: 'https://www.apple.com/services/' },
+      { label: 'Apple One', href: 'https://www.apple.com/apple-one/' },
+      { label: 'Apple TV', href: 'https://tv.apple.com/ua' },
+      { label: 'Apple Music', href: 'https://www.apple.com/apple-music/' }, 
+      { label: 'Apple Arcade', href: 'http://apple.com/apple-arcade/' },
+      { label: 'Apple Podcasts', href: 'https://www.apple.com/apple-podcasts/' },
+      { label: 'App Store', href: 'https://www.apple.com/app-store/' },
     ],
     columns: [
       {
         title: 'Підтримка',
-        links: ['Підтримка Apple TV', 'Підтримка Apple Music'],
+        links: [
+          { label: 'Підтримка Apple TV', href: '/support/tv-support' },
+          { label: 'Підтримка Apple Music', href: '/support/music-support' }, 
+        ],
       },
     ],
   },
@@ -174,19 +223,32 @@ export const MENU_DATA: Record<string, MenuEntry> = {
   // SUPPORT
   Підтримка: {
     title: 'Дізнатися про підтримку',
-    featured: ['iPhone', 'Mac', 'iPad', 'Watch', 'AirPods', 'Music', 'TV'],
-    bottomLink: 'Дізнатися про підтримку',
+    featured: [
+      { label: 'iPhone', href: '/support/iphone-support' },
+      { label: 'Mac', href: '/support/mac-support' },
+      { label: 'iPad', href: '/support/ipad-support' }, 
+      { label: 'Watch', href: '/support/watch-support' },
+      { label: 'AirPods', href: '/support/airpods-support' },
+      { label: 'Music', href: '/support/music-support' },
+      { label: 'TV', href: '/support/tv-support' },
+    ],
+    bottomLink: {
+      label: 'Дізнатися про підтримку', href: '/support' 
+    },
     columns: [
       {
         title: 'Допомога',
-        links: ['Спільнота', 'Перевірити програму підтримки'],
+        links: [ 
+          { label: 'Спільнота', href: 'https://discussions.apple.com/welcome?cid=gn-com-community-lp-get_help' }, 
+          { label: 'Перевірити програму підтримки', href: '/support/checkcoverage-get_help' }, 
+        ],
       },
       {
         title: 'Корисні теми',
         links: [
-          'Обліковий запис Apple і пароль',
-          'Виставлення рахунків і підписки',
-          'Доступність',
+          { label: 'Обліковий запис Apple і пароль', href: '/support/apple-account' },
+          { label: 'Виставлення рахунків і підписки', href: '/support/billing' },
+          { label: 'Доступність', href: '/support/accessibility' },
         ],
       },
     ],
@@ -195,8 +257,12 @@ export const MENU_DATA: Record<string, MenuEntry> = {
   // BUY
   'Де купити': {
     title: 'Огляд',
-    featured: ['Офіційні партнери', 'Обслуговування та підтримка'],
-    bottomLink: 'Переглянути всі варіанти',
+    featured: [
+      { label: 'Офіційні партнери', href: 'https://locate.apple.com/ua/en/sales' },
+      { label: 'Обслуговування та підтримка', href: 'https://locate.apple.com/ua/en/service' },
+    ],
+    bottomLink: { 
+      label: 'Переглянути всі варіанти', href: '/buy' },
     columns: [],
   },
 };

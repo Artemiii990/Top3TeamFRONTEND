@@ -1,4 +1,5 @@
 import s from './Essentials.module.css';
+import MenuLink from './MenuLink';
 
 type Promo = {
   id: string;
@@ -39,7 +40,7 @@ export default function Essentials() {
 
       <div className={s.grid}>
         {PROMOS.map(promo => (
-          <a key={promo.id} href={promo.href} className={s.card}>
+          <MenuLink key={promo.id} href={promo.href} className={s.card}>
             <div className={s.content}>
               {promo.eyebrow && <span className={s.eyebrow}>{promo.eyebrow}</span>}
               <h3 className={s.cardTitle}>{promo.title}</h3>
@@ -47,7 +48,7 @@ export default function Essentials() {
               <span className={s.cta}>{promo.cta}</span>
             </div>
             <div className={s.photo} style={{ background: promo.tint }} aria-hidden="true" />
-          </a>
+          </MenuLink>
         ))}
       </div>
     </section>

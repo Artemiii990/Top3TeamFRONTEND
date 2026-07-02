@@ -1,4 +1,5 @@
 import s from './AirpodsHero.module.css';
+import MenuLink from './MenuLink';
 
 type Tile = {
   label: string;
@@ -52,7 +53,7 @@ export default function AirPodsHero() {
       <ul className={s.tiles}>
         {TILES.map(tile => (
           <li key={tile.label} className={s.tile}>
-            <a href={tile.href} className={s.tileLink}>
+            <MenuLink href={tile.href} className={s.tileLink}>
               <img
                 src={tile.imgSrc}
                 alt={tile.imgAlt}
@@ -61,7 +62,7 @@ export default function AirPodsHero() {
               />
               <span className={s.tileLabel}>{tile.label}</span>
               {tile.tag && <span className={s.tileTag}>{tile.tag}</span>}
-            </a>
+            </MenuLink>
           </li>
         ))}
       </ul>

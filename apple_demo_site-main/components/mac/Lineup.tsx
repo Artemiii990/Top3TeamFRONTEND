@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import s from './Lineup.module.css';
+import MenuLink from './MenuLink';
 
 type Category = 'all' | 'laptops' | 'desktops' | 'displays';
 
@@ -234,10 +235,10 @@ export default function Lineup() {
             <p className={s.description}>{model.description}</p>
 
             <div className={s.ctaRow}>
-              <a href={model.moreHref} className={s.btnPrimary}>Детальніше</a>
-              <a href={model.buyHref} className={s.btnLink}>
+              <MenuLink href={model.moreHref} className={s.btnPrimary}>Детальніше</MenuLink>
+              <MenuLink href={model.buyHref} className={s.btnLink}>
                 Купити <span aria-hidden="true">›</span>
-              </a>
+              </MenuLink>
             </div>
           </li>
         ))}

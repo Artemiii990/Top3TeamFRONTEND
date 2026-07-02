@@ -1,4 +1,5 @@
 import s from './iPhoneNav.module.css';
+import MenuLink from './MenuLink';
 
 export default function IPhoneNav() {
   return (
@@ -10,22 +11,22 @@ export default function IPhoneNav() {
           <div className={s.left}>
             <p>Дізнатися про iPhone</p>
 
-            <a href="#">Переглянути всі моделі iPhone</a>
-            <a href="#">iPhone 17 Pro</a>
-            <a href="#">iPhone Air</a>
-            <a href="#">iPhone 17</a>
-            <a href="#">iPhone 17e</a>
-            <a href="#">iPhone 16</a>
+            <MenuLink href="/iphone">Переглянути всі моделі iPhone</MenuLink>
+            <MenuLink href="/iphone/iphone-17-pro">iPhone 17 Pro</MenuLink>
+            <MenuLink href="/iphone/iphone-air">iPhone Air</MenuLink>
+            <MenuLink href="/iphone/iphone-17">iPhone 17</MenuLink>
+            <MenuLink href="/iphone/iphone-17e">iPhone 17e</MenuLink>
+            <MenuLink href="/iphone/iphone-16">iPhone 16</MenuLink>
 
-            <a className={s.small} href="#">
+            <MenuLink className={s.small} href="/iphone/compare">
               Порівняння моделей iPhone
-            </a>
+            </MenuLink>
           </div>
 
           <div className={s.right}>
             <p>Більше від iPhone</p>
 
-            <a href="#">Підтримка iPhone</a>
+            <MenuLink href="/support/iphone">Підтримка iPhone</MenuLink>
           </div>
         </div>
       </div>

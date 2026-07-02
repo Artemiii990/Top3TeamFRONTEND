@@ -1,4 +1,5 @@
 import s from './MacNav.module.css';
+import MenuLink from './MenuLink';
 
 export default function MacNav() {
   return (
@@ -10,24 +11,24 @@ export default function MacNav() {
           <div className={s.left}>
             <p>Дізнатися про Mac</p>
 
-            <a href="#">Переглянути всі моделі Mac</a>
-            <a href="#">MacBook Neo</a>
-            <a href="#">MacBook Air</a>
-            <a href="#">MacBook Pro</a>
-            <a href="#">iMac</a>
-            <a href="#">Mac mini</a>
-            <a href="#">Mac Studio</a>
-            <a href="#">Дисплеї</a>
+            <MenuLink href="/mac">Переглянути всі моделі Mac</MenuLink>
+            <MenuLink href="/mac/macbook-neo">MacBook Neo</MenuLink>
+            <MenuLink href="/mac/macbook-air">MacBook Air</MenuLink>
+            <MenuLink href="/mac/macbook-pro">MacBook Pro</MenuLink>
+            <MenuLink href="/mac/imac">iMac</MenuLink>
+            <MenuLink href="/mac/mac-mini">Mac mini</MenuLink>
+            <MenuLink href="/mac/mac-studio">Mac Studio</MenuLink>
+            <MenuLink href="/mac/displays">Дисплеї</MenuLink>
 
-            <a className={s.small} href="#">
+            <MenuLink className={s.small} href="/mac/compare">
               Порівняння моделей Mac
-            </a>
+            </MenuLink>
           </div>
 
           <div className={s.right}>
             <p>Більше від Mac</p>
 
-            <a href="#">Підтримка Mac</a>
+            <MenuLink href="/support/mac">Підтримка Mac</MenuLink>
           </div>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import s from './CompareModels.module.css';
+import MenuLink from './MenuLink';
 
 type FeatureCell =
   | { type: 'check' }
@@ -168,7 +169,7 @@ export default function CompareModels() {
                 <span className={s.colTag}>{model.tag ?? ''}</span>
                 <h3 className={s.colName}>{model.name}</h3>
                 <p className={s.colDescription}>{model.description}</p>
-                <a href={model.moreHref} className={s.colCta}>Детальніше ›</a>
+                <MenuLink href={model.moreHref} className={s.colCta}>Детальніше ›</MenuLink>
               </div>
 
               {ROWS.map(row => (
@@ -183,7 +184,7 @@ export default function CompareModels() {
       </div>
 
       <div className={s.footerLinkRow}>
-        <a href="/airpods/compare" className={s.footerLink}>Порівняйте всі моделі AirPods ›</a>
+        <MenuLink href="/airpods/compare" className={s.footerLink}>Порівняйте всі моделі AirPods ›</MenuLink>
       </div>
     </section>
   );

@@ -1,4 +1,5 @@
 import s from './Hero.module.css';
+import MenuLink from './MenuLink';
 
 export default function Hero() {
   return (
@@ -23,10 +24,10 @@ export default function Hero() {
       </h1>
 
       <div className={s.ctaRow}>
-        <a href="/buy?category=tv" className={s.btnPrimary}>Купити</a>
-        <a href="/apple-tv-4k/specs" className={s.btnLink}>
+        <MenuLink href="/buy?category=tv" className={s.btnPrimary}>Купити</MenuLink>
+        <MenuLink href="/apple-tv-4k/specs" className={s.btnLink}>
           Докладніше <span aria-hidden="true">›</span>
-        </a>
+        </MenuLink>
       </div>
 
       <div className={s.stage}>

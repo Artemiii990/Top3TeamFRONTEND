@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import s from './FamilyTies.module.css';
+import MenuLink from './MenuLink';
 
 type Row = {
   id: string;
@@ -89,9 +90,9 @@ export default function FamilyTies() {
                       <>
                         Загубили свій iPhone? Останні моделі Apple Watch можуть показувати вам приблизну
                         відстань і напрямок, де його шукати
-                        <a href="#footnote-13" className={s.footnoteLink}>
+                        <MenuLink href="#footnote-13" className={s.footnoteLink}>
                           <sup>13</sup>
-                        </a>.{' '}
+                        </MenuLink>.{' '}
                         Щоб налаштувати групове фото на iPhone, приєднайтеся до групи та використовуйте Apple Watch як видошукач, щоб зробити знімок.
                         Коли ви відповідаєте на дзвінок на Apple Watch, просто торкніться iPhone,
                         щоб продовжити розмову на ньому.

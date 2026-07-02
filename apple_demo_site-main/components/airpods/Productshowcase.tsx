@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import s from './Productshowcase.module.css';
+import MenuLink from './MenuLink';
 
 type Model = {
   id: string;
@@ -117,9 +118,9 @@ export default function ProductShowcase() {
                 <p className={s.tagline}>{model.tagline}</p>
 
                 <div className={s.ctaRow}>
-                  <a href={model.moreHref} className={s.btnPrimary}>
+                  <MenuLink href={model.moreHref} className={s.btnPrimary}>
                     Детальніше
-                  </a>
+                  </MenuLink>
                 </div>
               </div>
             </div>

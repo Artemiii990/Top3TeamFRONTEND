@@ -2,6 +2,7 @@
 
 import s from './MegaMenu.module.css';
 import { MENU_DATA } from './menuData';
+import MenuLink from './MenuLink';
 
 type Props = {
   activeMenu: string | null;
@@ -39,20 +40,23 @@ export default function MegaMenu({
             <div className={s.label}>{menu.title}</div>
 
             {menu.featured.map((item, i) => (
-              <a
-                key={item}
-                href="#"
+              <MenuLink
+                key={item.label}
+                href={item.href}
                 className={s.featured}
-                style={{ animationDelay: `${i * 0.05}s` }}
+                // style={{ animationDelay: `${i * 0.05}s` }}
               >
-                {item}
-              </a>
+                {item.label}
+              </MenuLink>
             ))}
 
             {menu.bottomLink && (
-              <a href="#" className={s.bottomLink}>
-                {menu.bottomLink}
-              </a>
+              <MenuLink 
+                href={menu.bottomLink.href} 
+                className={s.bottomLink}
+              >
+                {menu.bottomLink.label}
+              </MenuLink>
             )}
           </div>
 
@@ -62,9 +66,13 @@ export default function MegaMenu({
               <div className={s.label}>{col.title}</div>
 
               {col.links.map(item => (
-                <a key={item} href="#" className={s.secondary}>
-                  {item}
-                </a>
+                <MenuLink 
+                  key={item.label} 
+                  href={item.href} 
+                  className={s.secondary}
+                >
+                  {item.label}
+                </MenuLink>
               ))}
             </div>
           ))}

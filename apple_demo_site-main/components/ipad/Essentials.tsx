@@ -1,4 +1,5 @@
 import s from './Essentials.module.css';
+import MenuLink from './MenuLink';
 
 type Card = {
   id: string;
@@ -41,9 +42,9 @@ export default function Essentials() {
             <div className={s.photo} style={{ background: card.tint }} aria-hidden="true" />
 
             <div className={s.linkRow}>
-              <a href={card.moreHref} className={s.btnLink}>
+              <MenuLink href={card.moreHref} className={s.btnLink}>
                 Детальніше <span aria-hidden="true">›</span>
-              </a>
+              </MenuLink>
             </div>
           </li>
         ))}

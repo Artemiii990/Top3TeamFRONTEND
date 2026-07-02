@@ -1,29 +1,69 @@
 import s from './Footer.module.css';
+import MenuLink from './MenuLink';
 
-const COLUMNS: { heading: string; links: string[] }[] = [
+type FooterLink = {
+  label: string;
+  href: string;
+};
+
+type FooterColumn = {
+  heading: string;
+  links: FooterLink[];
+};
+
+const COLUMNS: FooterColumn[] = [
   {
     heading: 'Продукти',
-    links: ['Mac', 'iPad', 'iPhone', 'Watch', 'AirPods', 'TV', 'AirTag'],
+    links: [
+      { label: 'Mac', href: '/mac' }, 
+      { label: 'iPad', href: '/ipad' },
+      { label: 'iPhone', href: '/iphone' },
+      { label: 'Watch', href: '/watch' },
+      { label: 'AirPods', href: '/airpods' }, 
+      { label: 'TV', href: '/tv' },
+      { label: 'AirTag', href: '/airtag' }, 
+    ],
   },
   {
     heading: 'Обліковий запис',
-    links: ['Керування обліковим записом Apple', 'iCloud.com']
+    links: [
+      { label: 'Керування обліковим записом Apple', href: '/apple-account' }, 
+      { label: 'iCloud.com', href: 'https://www.icloud.com/' } ,
+    ]
   },
   {
     heading: 'Сервіси',
-    links: ['Apple One', 'Apple TV', 'Apple Music', 'Apple Arcade', 'Apple Podcasts', 'Apple Books', 'App Store'],
+    links: [
+      { label: 'Apple One', href: 'https://www.apple.com/apple-one/' }, 
+      { label: 'Apple TV', href: 'https://tv.apple.com/ua' }, 
+      { label: 'Apple Music', href: 'https://www.apple.com/apple-music/' }, 
+      { label: 'Apple Arcade', href: 'https://www.apple.com/apple-arcade/' }, 
+      { label: 'Apple Podcasts', href: 'https://www.apple.com/apple-podcasts/' }, 
+      { label: 'Apple Books', href: 'https://www.apple.com/apple-books/' },
+      { label: 'App Store', href: 'https://www.apple.com/app-store/' }, 
+    ],
   },
   {
     heading: 'Для бізнесу',
-    links: ['Apple і бізнес']
+    links: [
+      { label: 'Apple і бізнес', href: 'https://www.apple.com/business/' },
+    ]
   },
   {
     heading: 'Цінності Apple',
-    links: ['Доступність', 'Довкілля', 'Конфіденційність']
+    links: [
+      { label: 'Доступність', href: '/accessibility' },
+      { label: 'Довкілля', href: 'https://www.apple.com/environment/' },
+      { label: 'Конфіденційність', href: 'https://www.apple.com/privacy/' },
+    ]
   },
   {
     heading: 'Про компанію Apple',
-    links: ['Вакансії', 'Інвесторам', 'Етика й відповідність'],
+    links: [
+      { label: 'Вакансії', href: 'https://www.apple.com/careers/ua/' },
+      { label: 'Інвесторам', href: 'https://investor.apple.com/investor-relations/default.aspx' },
+      { label: 'Етика й відповідність', href: 'https://www.apple.com/compliance/' },
+    ],
   },
 ];
 
@@ -37,12 +77,12 @@ export default function Footer() {
           було протестовано відповідно до стандарту IEC 60268-24 в липні 2025 року. Модель порівнювалася з найпопулярнішими бездротовими навушниками-вкладками, 
           доступними в продажу.</p>
         <p>◊◊ Інтегрований монітор серцевого ритму призначений для використання під час тренувань із додатком «Фітнес» і сумісними сторонніми додатками на iPhone 
-          з iOS 26 та новішої версії. Детальніше на <a href='#'> support.apple.com/uk‑ua/123184 </a>. </p>
+          з iOS 26 та новішої версії. Детальніше на <MenuLink href='/support/how-to-check-your-heart-rate'> support.apple.com/uk‑ua/123184 </MenuLink>. </p>
       </div>
 
       {/* FOOTER-BREADCRUMBS */}
       <div className={s.breadcrumbs}>
-        <a href="/" className={s.logo} aria-label="Apple">
+        <MenuLink href="/" className={s.logo} aria-label="Apple">
           <svg
             viewBox="0 0 14 44"
             xmlns="http://www.w3.org/2000/svg"
@@ -54,7 +94,7 @@ export default function Footer() {
               d="M9.9301 13.4151c.5921-.7166 1.0014-1.7184.8856-2.7167-.8536.0359-1.9009.5703-2.5187 1.2814-.5491.6324-1.0455 1.6539-.9148 2.6308.9536.0703 1.9268-.4707 2.5479-1.1955"
             />
           </svg>
-        </a>
+        </MenuLink>
         <span className={s.separator} aria-hidden="true">&rsaquo;</span>
         {/* <a href="/mac" className={s.crumbActive}>Mac</a> */}
         <a className={s.crumbActive}>Де купити</a>
@@ -66,7 +106,7 @@ export default function Footer() {
         <div className={s.column}>
           <div className={s.sectionBlock}>
             <h6>{COLUMNS[0].heading}</h6>
-            {COLUMNS[0].links.map(label => <a key={label} href="#">{label}</a>)}
+            {COLUMNS[0].links.map(link => (<MenuLink key={link.href} href={link.href}>{link.label}</MenuLink>))}
           </div>
         </div>
 
@@ -74,11 +114,11 @@ export default function Footer() {
         <div className={s.column}>
           <div className={s.sectionBlock}>
             <h6>{COLUMNS[1].heading}</h6>
-            {COLUMNS[1].links.map(label => <a key={label} href="#">{label}</a>)}
+            {COLUMNS[1].links.map(link => (<MenuLink key={link.href} href={link.href}>{link.label}</MenuLink>))}
           </div>
           <div className={s.sectionBlock}>
             <h6>{COLUMNS[2].heading}</h6>
-            {COLUMNS[2].links.map(label => <a key={label} href="#">{label}</a>)}
+            {COLUMNS[2].links.map(link => (<MenuLink key={link.href} href={link.href}>{link.label}</MenuLink>))}
           </div>
         </div>
 
@@ -86,7 +126,7 @@ export default function Footer() {
         <div className={s.column}>
           <div className={s.sectionBlock}>
             <h6>{COLUMNS[3].heading}</h6>
-            {COLUMNS[3].links.map(label => <a key={label} href="#">{label}</a>)}
+            {COLUMNS[3].links.map(link => (<MenuLink key={link.href} href={link.href}>{link.label}</MenuLink>))}
           </div>
         </div>
 
@@ -94,17 +134,17 @@ export default function Footer() {
         <div className={s.column}>
           <div className={s.sectionBlock}>
             <h6>{COLUMNS[4].heading}</h6>
-            {COLUMNS[4].links.map(label => <a key={label} href="#">{label}</a>)}
+            {COLUMNS[4].links.map(link => (<MenuLink key={link.href} href={link.href}>{link.label}</MenuLink>))}
           </div>
           <div className={s.sectionBlock}>
             <h6>{COLUMNS[5].heading}</h6>
-            {COLUMNS[5].links.map(label => <a key={label} href="#">{label}</a>)}
+            {COLUMNS[5].links.map(link => (<MenuLink key={link.href} href={link.href}>{link.label}</MenuLink>))}
           </div>
         </div>
       </div>
 
       <div className={s.partnerText}>
-        <a href='#'>Знайти поруч</a> магазин офіційного партнера.
+        <MenuLink href='https://locate.apple.com/ua/en/'>Знайти поруч</MenuLink> магазин офіційного партнера.
       </div>
         
       <div className={s.copyrightBlock}>
@@ -112,10 +152,10 @@ export default function Footer() {
           © 2026 Apple Inc. Усі права застережено.
         </div>
         <div className={s.copyrightLinks}>
-          <a href='#'>Політика конфіденційності</a>
-          <a href='#'>Юридична інформація</a>
-          <a href='#'>Карта сайту</a>
-          <a href='#' className={s.langLink}>Україна</a>
+          <MenuLink href='https://www.apple.com/legal/privacy/uk/'>Політика конфіденційності</MenuLink>
+          <MenuLink href='https://www.apple.com/legal/'>Юридична інформація</MenuLink>
+          <MenuLink href='/sitemap'>Карта сайту</MenuLink>
+          <MenuLink href='https://www.apple.com/choose-country-region/' className={s.langLink}>Україна</MenuLink>
         </div>
       </div>
     </footer>

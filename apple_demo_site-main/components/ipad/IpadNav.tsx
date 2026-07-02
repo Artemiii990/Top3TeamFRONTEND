@@ -1,4 +1,5 @@
 import s from './IpadNav.module.css';
+import MenuLink from './MenuLink';
 
 export default function IPadNav() {
   return (
@@ -10,23 +11,23 @@ export default function IPadNav() {
           <div className={s.left}>
             <p>Дізнатися про iPad</p>
 
-            <a href="#">Переглянути всі моделі iPad</a>
-            <a href="#">iPad Pro</a>
-            <a href="#">iPad Air</a>
-            <a href="#">iPad</a>
-            <a href="#">iPad mini</a>
-            <a href="#">Apple Pencil</a>
-            <a href="#">Клавіатури</a>
+            <MenuLink href="/ipad">Переглянути всі моделі iPad</MenuLink>
+            <MenuLink href="/ipad/ipad-pro">iPad Pro</MenuLink>
+            <MenuLink href="/ipad/ipad-air">iPad Air</MenuLink>
+            <MenuLink href="/ipad/ipad-11">iPad</MenuLink>
+            <MenuLink href="/ipad/ipad-mini">iPad mini</MenuLink>
+            <MenuLink href="/ipad/ipad-pencil">Apple Pencil</MenuLink>
+            <MenuLink href="/ipad/keyboards">Клавіатури</MenuLink>
 
-            <a className={s.small} href="#">
+            <MenuLink className={s.small} href="/ipad/compare">
               Порівняння моделей iPad
-            </a>
+            </MenuLink>
           </div>
 
           <div className={s.right}>
             <p>Більше від iPad</p>
 
-            <a href="#">Підтримка iPad</a>
+            <MenuLink href="/support/ipad">Підтримка iPad</MenuLink>
           </div>
         </div>
       </div>
